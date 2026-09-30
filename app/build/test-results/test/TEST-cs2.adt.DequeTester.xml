@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cs2.adt.DequeTester" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-04-29T21:35:13" hostname="JUSTIN_LAPTOP19" time="0.036">
+  <properties/>
+  <testcase name="testEmptyDeque()" classname="cs2.adt.DequeTester" time="0.023"/>
+  <testcase name="testResizePrepend()" classname="cs2.adt.DequeTester" time="0.001"/>
+  <testcase name="testPopBack()" classname="cs2.adt.DequeTester" time="0.001"/>
+  <testcase name="testPrepend()" classname="cs2.adt.DequeTester" time="0.0"/>
+  <testcase name="testAppend()" classname="cs2.adt.DequeTester" time="0.001"/>
+  <testcase name="testPopFront()" classname="cs2.adt.DequeTester" time="0.0"/>
+  <testcase name="testMixedOperations()" classname="cs2.adt.DequeTester" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
