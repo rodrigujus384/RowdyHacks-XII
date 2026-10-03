@@ -38,11 +38,19 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
+  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen
   int storyAcum;
+
+  //'resources'
+  static int guestHappiness;
+  static int musicVolume;
+  static int snacks;
+  static int alcohol;
+
   //Intializes Screens 
   StartScreen startScreen;
   HowToPlayScreen howScreen;
+  Intro IntroScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -55,7 +63,8 @@ public class MainApp extends Application {
     GraphicsContext g = canvas.getGraphicsContext2D();
 
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
-    howScreen = new HowToPlayScreen(g);
+    howScreen = new HowToPlayScreen(g, new Image("file:imgs/store_floor1.png"));
+    IntroScreen = new Intro(g);
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
@@ -77,25 +86,7 @@ public class MainApp extends Application {
         }
 
         else if (GameStatus == 1) {
-        storyAcum ++;
-        g.setFill(Color.rgb(78, 179, 247));
-        g.fillRect(0, 0, 1280,720);
-        g.setFill(Color.rgb(255, 255, 255));
-        g.fillRect(440, 0, 400,720);
-        g.setFill(Color.rgb(0, 0, 0));
-        g.fillRect(440, 0, 400, 50);
-        g.fillRect(440, 670, 400, 50);
-        g.fillRect(440, 0, 25, 720);
-        g.fillRect(815, 0, 25, 720);
-        g.setFill(Color.rgb(50, 50, 50));
-        g.fillOval(625, 680, 30, 30);
-        g.setFill(Color.rgb(207, 207, 207));
-        g.fillRect(465, 50, 350, 75);
-        g.drawImage(NPCcontact, 600, 55);
-        if (storyAcum >= 120) {g.drawImage(friendPFP, 480, 150);}
-        if (storyAcum >= 240 && storyAcum < 420) {g.drawImage(Bubble, 530, 135);}
-        if (storyAcum >= 420) {g.fillRect(540, 150, 250, 75);}
-        if (storyAcum >= 720) {g.drawImage(playerPFP, 750, 250);}
+        IntroScreen.render();
       }
 
         else if (GameStatus == 2) {
