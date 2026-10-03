@@ -25,8 +25,8 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
   
   // Images created
-  static final Image ArloSprite = new Image("file:GayArlo.png");
-  static final Image MatthewSprite = new Image("file:GayMatthew.png");
+  static final Image ArloSprite = new Image("file:imgs/ImageNotFound.png");
+  static final Image MatthewSprite = new Image("file:ImageNotFound.png");
   static final Image AudreySprite = new Image("file:BiAudrey.png");
   static final Image ArloBullet = new Image("file:Philippines.png");
   static final Image MatthewBullet = new Image("file:Radiohead.png");
@@ -36,7 +36,7 @@ public class MainApp extends Application {
   static final Image EnemyBullet = new Image("file:Foot.png");
   static final Image planet = new Image("file:FTOplanet.png");
   static final Image Buff = new Image("file:HolePuncher.png");
-  static final Image Default = new Image("file:ImageNotFound.png");
+  static final Image Default = new Image("file:imgs/ImageNotFound.png");
   
 
 
