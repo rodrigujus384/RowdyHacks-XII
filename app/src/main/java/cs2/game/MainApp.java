@@ -31,24 +31,9 @@ public class MainApp extends Application {
 
   // Variables initialized
   Player player = new Player(Default, Default, new Vec2(200, 575));
-  EnemySwarm enemies = new EnemySwarm((int)(Math.random() * Difficulty)+2, (int)(Math.random() * Difficulty), DylanSprite, KarlSprite, EnemyBullet);
-  Buff Punch = new Buff(Buff, new Vec2(250, 750), new Vec2(0, 5));
-  ArrayList<Moving> shots = new ArrayList<Moving>();
-  Set<KeyCode> inputs = new HashSet<KeyCode>();
-  int PlayerLives = 3;
-  int PlayerScore = 0;
-  int HighScore = 0;
-  boolean HSreset = true;
-  int BCD = 0;
-  int eBCD = 0;
-  boolean BHere = false;
-  int PUCount = 0;
-  int PUdown = 300;
-  static boolean Powerup = false;
+  //Set<KeyCode> inputs = new HashSet<KeyCode>();
   int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
-  static int Difficulty = 0; // Difficulty scales 1-5
-  int SwarmsKilled = 0;
-  static String PlayerWho = "";
+
 
 
   @SuppressWarnings("incomplete-switch")
