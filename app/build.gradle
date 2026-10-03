@@ -55,7 +55,7 @@ test {
 application {
     // Define the main class for the application.
     if(!project.hasProperty('main')) {
-        mainClass = 'cs2.hello.App'
+        mainClass = 'cs2.game.MainApp'
     } else {
         mainClass = project.findProperty('main').toString()
     }

@@ -23,7 +23,7 @@ public class Enemy extends Sprite {
   // The Bullet should be initialized with the bulletPicture, the
   // current position of the enemy, and a velocity going down the screen
   public Bullet shoot() {
-    Bullet Projectile = new Bullet(bulletPicture, new Vec2(pos.getX()+15, pos.getY()+25), new Vec2(0, 2*(SpaceGameApp.Difficulty)), false);
+    Bullet Projectile = new Bullet(bulletPicture, new Vec2(pos.getX()+15, pos.getY()+25), new Vec2(0, 2*(MainApp.Difficulty)), false);
     return Projectile;
   }
 

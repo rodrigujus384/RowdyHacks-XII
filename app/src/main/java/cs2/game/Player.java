@@ -28,32 +28,32 @@ public class Player extends Sprite {
 
 
   public void moveLeft() { 
-    if (!SpaceGameApp.Powerup) {x = 5;} else if (SpaceGameApp.Powerup) {x = 10;}
-    if (SpaceGameApp.PlayerWho == "Matthew") {x = 1.5*x;}
+    if (!MainApp.Powerup) {x = 5;} else if (MainApp.Powerup) {x = 10;}
+    if (MainApp.PlayerWho == "Matthew") {x = 1.5*x;}
     Vec2 left = new Vec2(-x, 0);
     if (pos.getX() > 0)
       pos.addThis(left);
   }
 
   public void moveRight() { 
-    if (!SpaceGameApp.Powerup) {x = 5;} else if (SpaceGameApp.Powerup) {x = 10;}
-    if (SpaceGameApp.PlayerWho == "Matthew") {x = 1.5*x;}
+    if (!MainApp.Powerup) {x = 5;} else if (MainApp.Powerup) {x = 10;}
+    if (MainApp.PlayerWho == "Matthew") {x = 1.5*x;}
     Vec2 right = new Vec2(x,0);
     if (pos.getX() < 500-(this.img.getWidth()))
       pos.addThis(right);
   }
 
   public void moveUp() { 
-    if (!SpaceGameApp.Powerup) {x = 5;} else if (SpaceGameApp.Powerup) {x = 10;}
-    if (SpaceGameApp.PlayerWho == "Matthew") {x = 1.5*x;}
+    if (!MainApp.Powerup) {x = 5;} else if (MainApp.Powerup) {x = 10;}
+    if (MainApp.PlayerWho == "Matthew") {x = 1.5*x;}
     Vec2 right = new Vec2(0,-x);
     if (pos.getY() > 0)
       pos.addThis(right);
   }
 
   public void moveDown() { 
-    if (!SpaceGameApp.Powerup) {x = 5;} else if (SpaceGameApp.Powerup) {x = 10;}
-    if (SpaceGameApp.PlayerWho == "Matthew") {x = 1.5*x;}
+    if (!MainApp.Powerup) {x = 5;} else if (MainApp.Powerup) {x = 10;}
+    if (MainApp.PlayerWho == "Matthew") {x = 1.5*x;}
     Vec2 right = new Vec2(0, x);
     if (pos.getY() < 575)
       pos.addThis(right);
