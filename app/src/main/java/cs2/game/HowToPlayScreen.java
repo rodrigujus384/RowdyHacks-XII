@@ -14,7 +14,7 @@ public class HowToPlayScreen implements Screen {
 
     public HowToPlayScreen(GraphicsContext g) {
         this.g = g;
-        this.back = new Clickable(new Vec2(500, 500));
+        this.back = new Clickable(new Vec2(500, 500), "Return Home");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class HowToPlayScreen implements Screen {
     public void render() {
 
         // Background
-        g.setFill(Color.rgb(176, 90, 9));
+        g.setFill(Color.web("#87cefa"));
         g.fillRect(0, 0, 1280, 720);
 
         // Popup box
