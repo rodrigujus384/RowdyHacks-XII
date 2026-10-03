@@ -16,6 +16,10 @@ public class StartScreen implements Screen{
 
     public StartScreen(GraphicsContext g,Image start, Image how){
         this.g = g;
+
+        System.out.println("Start image: " + start.getWidth() + " x " + start.getHeight());
+    System.out.println("How image: " + how.getWidth() + " x " + how.getHeight());
+
         this.start = new Clickable(start, new Vec2(490, 350));
         this.howToPlay = new Clickable(how, new Vec2(490, 450));
     }
@@ -30,14 +34,6 @@ public class StartScreen implements Screen{
         g.setFill(Color.WHITE);
         g.setFont(Font.font("Arial", 60));
         g.fillText("PARTY ANIMAL", 400, 200);
-
-        // Start button
-        g.setFill(Color.BLACK);
-        g.fillRect(490, 350, 300, 80);
-
-        g.setFill(Color.WHITE);
-        g.setFont(Font.font("Arial", 30));
-        g.fillText("START GAME", 550, 400);
 
         start.display(g);
         howToPlay.display(g);

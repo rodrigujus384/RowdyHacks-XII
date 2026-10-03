@@ -28,6 +28,9 @@ public class MainApp extends Application {
   
   // Images created
   static final Image Default = new Image("file:imgs/ImageNotFound.png");
+  static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
+  static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
+  static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
   
 
 
@@ -47,21 +50,20 @@ public class MainApp extends Application {
     stage.setScene(new Scene(new StackPane(canvas)));
     GraphicsContext g = canvas.getGraphicsContext2D();
 
+    startScreen = new StartScreen(g, new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner_pfp.png"), new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner.png") );
+    canvas.setOnMouseClicked(event -> {
+            if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
+            else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("How to Play");}
+            else {System.out.println("Nothing was clicked");}
+      });
+
     // TIMER START
     AnimationTimer timer = new AnimationTimer() {
       public void handle(long t) {
         
         // Title screen
         if (GameStatus == 0) {
-          startScreen = new StartScreen(g, startImage, howImage);
-          startScreen.draw(g); 
-          canvas.setOnMouseClicked(event -> {
-              if (GameStatus == 0 &&
-                  startScreen.isStartButtonClicked(event.getX(), event.getY())) {
-                  System.out.println("Button Clicked");
-                  GameStatus = 1;
-              }
-          });
+          startScreen.render(); 
         }
 
         if (GameStatus == 1) {
