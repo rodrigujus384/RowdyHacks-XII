@@ -29,6 +29,7 @@ public class MainApp extends Application {
   static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
   static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
   static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
+  static final Image Bubble = new Image("file:imgs/speech_bubble.png", 75, 75, true, true);
   
 
 
@@ -36,6 +37,7 @@ public class MainApp extends Application {
   Player player = new Player(Default, Default, new Vec2(200, 575));
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
   int GameStatus = 1; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
+  int storyAcum = 0;
 
 
 
@@ -59,6 +61,7 @@ public class MainApp extends Application {
 
         // story screen
       if (GameStatus == 1) {
+        storyAcum ++;
         g.setFill(Color.rgb(78, 179, 247));
         g.fillRect(0, 0, 1280,720);
         g.setFill(Color.rgb(255, 255, 255));
@@ -73,8 +76,10 @@ public class MainApp extends Application {
         g.setFill(Color.rgb(207, 207, 207));
         g.fillRect(465, 50, 350, 75);
         g.drawImage(NPCcontact, 600, 55);
-        g.drawImage(friendPFP, 480, 150);
-        g.drawImage(playerPFP, 750, 250);
+        if (storyAcum >= 120) {g.drawImage(friendPFP, 480, 150);}
+        if (storyAcum >= 240 && storyAcum < 420) {g.drawImage(Bubble, 530, 135);}
+        if (storyAcum >= 420) {g.fillRect(540, 150, 250, 75);}
+        if (storyAcum >= 720) {g.drawImage(playerPFP, 750, 250);}
       }
 
       if (GameStatus == 2) {
