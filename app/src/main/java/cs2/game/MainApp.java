@@ -40,6 +40,7 @@ public class MainApp extends Application {
   int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
   //Intializes Screens 
   StartScreen startScreen;
+  HowToPlayScreen howScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -50,11 +51,17 @@ public class MainApp extends Application {
     stage.setScene(new Scene(new StackPane(canvas)));
     GraphicsContext g = canvas.getGraphicsContext2D();
 
-    startScreen = new StartScreen(g, new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner_pfp.png"), new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner.png") );
+    startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
+    howScreen = new HowToPlayScreen(g, new Image("file:imgs/store_floor1.png"));
+
     canvas.setOnMouseClicked(event -> {
-            if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
-            else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("How to Play");}
-            else {System.out.println("Nothing was clicked");}
+            if (GameStatus == 0) { 
+              if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
+              else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {GameStatus = 5;}
+              else {System.out.println("Nothing was clicked");}
+            }else{
+              if(howScreen.isButtonClick(event.getX(), event.getY())) {GameStatus = 0;}
+            }
       });
 
     // TIMER START
@@ -66,17 +73,24 @@ public class MainApp extends Application {
           startScreen.render(); 
         }
 
-        if (GameStatus == 1) {
+        else if (GameStatus == 1) {
       }
 
-      if (GameStatus == 2) {
+        else if (GameStatus == 2) {
       }
 
-      if (GameStatus == 3) {
+        else if (GameStatus == 3) {
       }
 
-      if (GameStatus == 4) {
+        else if (GameStatus == 4) {
       }
+
+        else if (GameStatus == 5) { 
+          System.out.println("Rendering How Screen");
+          howScreen.render();
+        }
+
+      
     }
     };
     timer.start();

@@ -18,7 +18,7 @@ public class StartScreen implements Screen{
         this.g = g;
 
         System.out.println("Start image: " + start.getWidth() + " x " + start.getHeight());
-    System.out.println("How image: " + how.getWidth() + " x " + how.getHeight());
+        System.out.println("How image: " + how.getWidth() + " x " + how.getHeight());
 
         this.start = new Clickable(start, new Vec2(490, 350));
         this.howToPlay = new Clickable(how, new Vec2(490, 450));
