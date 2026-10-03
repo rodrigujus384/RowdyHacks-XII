@@ -8,12 +8,14 @@ import javafx.scene.image.Image;
 
 public class StartScreen implements Screen{
 
+    //private buttons and g
     private Clickable start;
     private Clickable howToPlay; 
     private GraphicsContext g; 
 
     private final double buttonHeight = 80;
 
+    //Gets the graphics and buttons 
     public StartScreen(GraphicsContext g,Image start, Image how){
         this.g = g;
 
@@ -24,7 +26,8 @@ public class StartScreen implements Screen{
         this.howToPlay = new Clickable(how, new Vec2(490, 450));
     }
 
-    public void draw() {
+    //Draws the graphics for the screen 
+    private void draw() {
 
         // Background
         g.setFill(Color.rgb(176, 90, 9));
@@ -39,12 +42,14 @@ public class StartScreen implements Screen{
         howToPlay.display(g);
     }
 
+    //Returns an integer based on what button is clicked 
     public int isButtonClick(double mouseX, double mouseY){
         if(isButtonClicked(start, mouseX, mouseY)) { return 1; }
         else if(isButtonClicked(howToPlay, mouseX, mouseY)) { return 2; }
         else{ return -1; }
     }
 
+    //Given button, chceks if that button is clicked or not 
     private boolean isButtonClicked(Clickable button, double mouseX, double mouseY){
         Vec2 position = button.getPos(); 
         double w = button.getWidth();
@@ -54,6 +59,7 @@ public class StartScreen implements Screen{
         return ButtonClicked(w, x, y, mouseX, mouseY);
     }
 
+    //Checks if the mouse overlaps with the button. 
     private boolean ButtonClicked(double buttonWidth, double buttonX, double buttonY, double mouseX, double mouseY) {
         return mouseX >= buttonX &&
                mouseX <= buttonX + buttonWidth &&
