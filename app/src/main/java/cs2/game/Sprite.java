@@ -33,6 +33,11 @@ public abstract class Sprite {
   public double getWidth(){ 
     return img.getWidth();
   }
+
+  //Returns the current sprite's height
+  public double getHeight(){
+    return img.getHeight(); 
+  }
   
   // This method should draw the image at the current position
   public void display(GraphicsContext g) { 

@@ -22,15 +22,15 @@ public class StartScreen implements Screen{
         System.out.println("Start image: " + start.getWidth() + " x " + start.getHeight());
         System.out.println("How image: " + how.getWidth() + " x " + how.getHeight());
 
-        this.start = new Clickable(new Vec2(490, 350));
-        this.howToPlay = new Clickable(new Vec2(490, 450));
+        this.start = new Clickable(new Vec2(490, 350), "Start");
+        this.howToPlay = new Clickable(new Vec2(490, 450), "How To Play");
     }
 
     //Draws the graphics for the screen 
     private void draw() {
 
         // Background
-        g.setFill(Color.rgb(176, 90, 9));
+        g.setFill(Color.web("#87cefa"));
         g.fillRect(0, 0, 1280, 720);
 
         // Title
