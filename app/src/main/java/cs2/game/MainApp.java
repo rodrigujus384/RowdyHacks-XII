@@ -26,13 +26,16 @@ public class MainApp extends Application {
   
   // Images created
   static final Image Default = new Image("file:imgs/ImageNotFound.png");
+  static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
+  static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
+  static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
   
 
 
   // Variables initialized
   Player player = new Player(Default, Default, new Vec2(200, 575));
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
+  int GameStatus = 1; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
 
 
 
@@ -49,12 +52,29 @@ public class MainApp extends Application {
       public void handle(long t) {
         
         // Title screen
-        if (GameStatus == 0) {
+      if (GameStatus == 0) {
           g.setFill(Color.rgb(176, 90, 9));
           g.fillRect(0, 0, 1280,720);
         }
 
-        if (GameStatus == 1) {
+        // story screen
+      if (GameStatus == 1) {
+        g.setFill(Color.rgb(78, 179, 247));
+        g.fillRect(0, 0, 1280,720);
+        g.setFill(Color.rgb(255, 255, 255));
+        g.fillRect(440, 0, 400,720);
+        g.setFill(Color.rgb(0, 0, 0));
+        g.fillRect(440, 0, 400, 50);
+        g.fillRect(440, 670, 400, 50);
+        g.fillRect(440, 0, 25, 720);
+        g.fillRect(815, 0, 25, 720);
+        g.setFill(Color.rgb(50, 50, 50));
+        g.fillOval(625, 680, 30, 30);
+        g.setFill(Color.rgb(207, 207, 207));
+        g.fillRect(465, 50, 350, 75);
+        g.drawImage(NPCcontact, 600, 55);
+        g.drawImage(friendPFP, 480, 150);
+        g.drawImage(playerPFP, 750, 250);
       }
 
       if (GameStatus == 2) {
