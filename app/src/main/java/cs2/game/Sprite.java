@@ -24,8 +24,16 @@ public abstract class Sprite {
     pos = p;
   }
   
+  // Returns the current postions of the sprite
+  public Vec2 getPos(){
+    return pos;
+  }
 
-
+  // Returns the current sprite's width
+  public double getWidth(){ 
+    return img.getWidth();
+  }
+  
   // This method should draw the image at the current position
   public void display(GraphicsContext g) { 
     g.drawImage(img, pos.getX(), pos.getY());

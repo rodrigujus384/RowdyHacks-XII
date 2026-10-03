@@ -20,9 +20,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 @SuppressWarnings("unused")
 public class MainApp extends Application {
+
   
   // Images created
   static final Image Default = new Image("file:imgs/ImageNotFound.png");
@@ -33,7 +35,8 @@ public class MainApp extends Application {
   Player player = new Player(Default, Default, new Vec2(200, 575));
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
   int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
-
+  //Intializes Screens 
+  StartScreen startScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -50,8 +53,15 @@ public class MainApp extends Application {
         
         // Title screen
         if (GameStatus == 0) {
-          g.setFill(Color.rgb(176, 90, 9));
-          g.fillRect(0, 0, 1280,720);
+          startScreen = new StartScreen(g, startImage, howImage);
+          startScreen.draw(g); 
+          canvas.setOnMouseClicked(event -> {
+              if (GameStatus == 0 &&
+                  startScreen.isStartButtonClicked(event.getX(), event.getY())) {
+                  System.out.println("Button Clicked");
+                  GameStatus = 1;
+              }
+          });
         }
 
         if (GameStatus == 1) {
