@@ -1,53 +1,33 @@
 package cs2.game;
 
 import cs2.util.Vec2;
-import javafx.scene.image.Image;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Player extends Sprite {
-  Image bulletPicture;
-  double x = 0;
+  double moveSpeed = 3;
 
-
-  //This constructor should initialize all fields
-  //**Remember that some fields are inherited from Sprite
-  public Player(Image avatar, Image bullPic, Vec2 p) {
-    super(avatar, p);
-    bulletPicture = bullPic;
-   }
-
-
-
-  // This method should create a new Bullet object and return it
-  // The Bullet should be initialized with the bulletPicture, the
-  // current position of the player, and a velocity going up the screen
-  public Moving shoot(double x) { 
-    Moving Projectile = new Moving(bulletPicture, new Vec2(pos.getX()+x, pos.getY()-15), new Vec2(0,-3), true);
-    return Projectile;
+  public Player() {
+    super(MainApp.playerImg, new Vec2(0,0));
+  }
+ 
+  public void display(GraphicsContext g) { 
+    g.drawImage(img, 640, 360);
   }
 
-
-
-  public void moveLeft() { 
-    Vec2 left = new Vec2(-x, 0);
+  public void moveLeft() {
     if (pos.getX() > 0)
-      pos.addThis(left);
+      this.move(new Vec2(-moveSpeed, 0));
   }
-
-  public void moveRight() { 
-    Vec2 right = new Vec2(x,0);
+  public void moveRight() {
     if (pos.getX() < 500-(this.img.getWidth()))
-      pos.addThis(right);
+      this.move(new Vec2(moveSpeed, 0));
   }
-
   public void moveUp() { 
-    Vec2 right = new Vec2(0,-x);
     if (pos.getY() > 0)
-      pos.addThis(right);
+      this.move(new Vec2(0, -moveSpeed));
   }
-
   public void moveDown() { 
-    Vec2 right = new Vec2(0, x);
     if (pos.getY() < 575)
-      pos.addThis(right);
+      this.move(new Vec2(0, moveSpeed));
   }
 }

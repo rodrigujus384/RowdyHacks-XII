@@ -2,7 +2,6 @@ package cs2.game;
 
 import cs2.util.Vec2;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
