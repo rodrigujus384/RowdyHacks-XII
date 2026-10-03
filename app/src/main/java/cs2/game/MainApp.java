@@ -55,7 +55,7 @@ public class MainApp extends Application {
     GraphicsContext g = canvas.getGraphicsContext2D();
 
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
-    howScreen = new HowToPlayScreen(g, new Image("file:imgs/store_floor1.png"));
+    howScreen = new HowToPlayScreen(g);
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
