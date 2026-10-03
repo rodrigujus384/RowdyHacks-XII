@@ -31,6 +31,7 @@ public class MainApp extends Application {
   static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
   static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
   static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
+  static final Image Bubble = new Image("file:imgs/speech_bubble.png", 75, 75, true, true);
   
 
 
@@ -38,6 +39,7 @@ public class MainApp extends Application {
   Player player = new Player(Default, Default, new Vec2(200, 575));
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
   int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end
+  int storyAcum;
   //Intializes Screens 
   StartScreen startScreen;
   HowToPlayScreen howScreen;
