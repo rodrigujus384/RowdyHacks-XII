@@ -20,8 +20,8 @@ public class Player extends Sprite {
   // This method should create a new Bullet object and return it
   // The Bullet should be initialized with the bulletPicture, the
   // current position of the player, and a velocity going up the screen
-  public Bullet shoot(double x) { 
-    Bullet Projectile = new Bullet(bulletPicture, new Vec2(pos.getX()+x, pos.getY()-15), new Vec2(0,-3), true);
+  public Moving shoot(double x) { 
+    Moving Projectile = new Moving(bulletPicture, new Vec2(pos.getX()+x, pos.getY()-15), new Vec2(0,-3), true);
     return Projectile;
   }
 

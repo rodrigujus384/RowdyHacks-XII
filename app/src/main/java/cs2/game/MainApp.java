@@ -44,7 +44,7 @@ public class MainApp extends Application {
   Player player = new Player(Default, Default, new Vec2(200, 575));
   EnemySwarm enemies = new EnemySwarm((int)(Math.random() * Difficulty)+2, (int)(Math.random() * Difficulty), DylanSprite, KarlSprite, EnemyBullet);
   Buff Punch = new Buff(Buff, new Vec2(250, 750), new Vec2(0, 5));
-  ArrayList<Bullet> shots = new ArrayList<Bullet>();
+  ArrayList<Moving> shots = new ArrayList<Moving>();
   Set<KeyCode> inputs = new HashSet<KeyCode>();
   int PlayerLives = 3;
   int PlayerScore = 0;
@@ -148,7 +148,7 @@ public class MainApp extends Application {
           else if (Powerup) {g.fillText("POWERUP ACTIVATED", 50, 40);}
           player.display(g);
           enemies.display(g);
-          for (Bullet b : shots){
+          for (Moving b : shots){
             b.display(g);
           }
 
@@ -204,7 +204,7 @@ public class MainApp extends Application {
           player.display(g); // Shows the player
           enemies.display(g); // Shows the enemies
           // shows all bullets
-          for (Bullet b : shots) {
+          for (Moving b : shots) {
             b.update();
             b.display(g);
           }
@@ -230,7 +230,7 @@ public class MainApp extends Application {
           
           // Loop through all bullets
           for (int i=0; i<shots.size(); i++) {
-            Bullet b = shots.get(i);
+            Moving b = shots.get(i);
             // Bullet hits player
             if (player.intersection(b) && !b.PB) {
               if (!Powerup) {PlayerLives--;
@@ -249,7 +249,7 @@ public class MainApp extends Application {
             }
             // Bullets hit each other
             for (int k = 0; k < shots.size(); k++) {
-              Bullet d = shots.get(k);
+              Moving d = shots.get(k);
               if (b.intersection(d) && b != d) {
                 if (!Powerup && !b.PB) {shots.remove(b); shots.remove(d);}
               }
