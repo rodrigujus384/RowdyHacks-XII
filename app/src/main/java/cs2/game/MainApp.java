@@ -42,6 +42,7 @@ public class MainApp extends Application {
   int storyAcum;
   //Intializes Screens 
   StartScreen startScreen;
+  HowToPlayScreen howScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -52,11 +53,17 @@ public class MainApp extends Application {
     stage.setScene(new Scene(new StackPane(canvas)));
     GraphicsContext g = canvas.getGraphicsContext2D();
 
-    startScreen = new StartScreen(g, new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner_pfp.png"), new Image("file:/Users/jordancarter/Desktop/RowdyHacks/RowdyHacks-XII/app/imgs/roadrunner.png") );
+    startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
+    howScreen = new HowToPlayScreen(g, new Image("file:imgs/store_floor1.png"));
+
     canvas.setOnMouseClicked(event -> {
-            if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
-            else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("How to Play");}
-            else {System.out.println("Nothing was clicked");}
+            if (GameStatus == 0) { 
+              if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
+              else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {GameStatus = 5;}
+              else {System.out.println("Nothing was clicked");}
+            }else{
+              if(howScreen.isButtonClick(event.getX(), event.getY())) {GameStatus = 0;}
+            }
       });
 
     // TIMER START
@@ -68,37 +75,24 @@ public class MainApp extends Application {
           startScreen.render(); 
         }
 
-        // story screen
-      if (GameStatus == 1) {
-        storyAcum ++;
-        g.setFill(Color.rgb(78, 179, 247));
-        g.fillRect(0, 0, 1280,720);
-        g.setFill(Color.rgb(255, 255, 255));
-        g.fillRect(440, 0, 400,720);
-        g.setFill(Color.rgb(0, 0, 0));
-        g.fillRect(440, 0, 400, 50);
-        g.fillRect(440, 670, 400, 50);
-        g.fillRect(440, 0, 25, 720);
-        g.fillRect(815, 0, 25, 720);
-        g.setFill(Color.rgb(50, 50, 50));
-        g.fillOval(625, 680, 30, 30);
-        g.setFill(Color.rgb(207, 207, 207));
-        g.fillRect(465, 50, 350, 75);
-        g.drawImage(NPCcontact, 600, 55);
-        if (storyAcum >= 120) {g.drawImage(friendPFP, 480, 150);}
-        if (storyAcum >= 240 && storyAcum < 420) {g.drawImage(Bubble, 530, 135);}
-        if (storyAcum >= 420) {g.fillRect(540, 150, 250, 75);}
-        if (storyAcum >= 720) {g.drawImage(playerPFP, 750, 250);}
+        else if (GameStatus == 1) {
       }
 
-      if (GameStatus == 2) {
+        else if (GameStatus == 2) {
       }
 
-      if (GameStatus == 3) {
+        else if (GameStatus == 3) {
       }
 
-      if (GameStatus == 4) {
+        else if (GameStatus == 4) {
       }
+
+        else if (GameStatus == 5) { 
+          System.out.println("Rendering How Screen");
+          howScreen.render();
+        }
+
+      
     }
     };
     timer.start();
