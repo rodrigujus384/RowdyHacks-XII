@@ -13,9 +13,9 @@ public class HowToPlayScreen implements Screen {
 
     private final double buttonHeight = 80;
 
-    public HowToPlayScreen(GraphicsContext g, Image i) {
+    public HowToPlayScreen(GraphicsContext g) {
         this.g = g;
-        this.back = new Clickable(i, new Vec2(500, 500));
+        this.back = new Clickable(new Vec2(500, 500));
     }
 
     @Override
