@@ -19,7 +19,7 @@ public abstract class PlayState {
 
     // Handles movement in Heist and Party
     public void movement(Set<KeyCode> s){
-        //TODO: implement movement from Player
+        //TODO: implement movement for Player
     }
 
     // Handles collison in Heist and Party
