@@ -51,6 +51,7 @@ public class MainApp extends Application {
     stage.show();
     Canvas canvas = new Canvas(1280,720);
     stage.setScene(new Scene(new StackPane(canvas)));
+    stage.setAlwaysOnTop(true);
     GraphicsContext g = canvas.getGraphicsContext2D();
 
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
@@ -58,7 +59,7 @@ public class MainApp extends Application {
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
-              if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) { System.out.println("Start");}
+              if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) {GameStatus = 1;}
               else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {GameStatus = 5;}
               else {System.out.println("Nothing was clicked");}
             }else{
