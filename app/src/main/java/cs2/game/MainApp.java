@@ -64,9 +64,9 @@ public class MainApp extends Application {
 
   @SuppressWarnings("incomplete-switch")
   public void start(Stage stage) {
-    stage.setTitle("FTO BOARD SAVES THE WORLD!");
+    stage.setTitle("Party Animal");
     stage.show();
-    Canvas canvas = new Canvas(500,800);
+    Canvas canvas = new Canvas(1280,720);
     stage.setScene(new Scene(new StackPane(canvas)));
     GraphicsContext g = canvas.getGraphicsContext2D();
     // g.setFill(Color.rgb(39, 3, 94));
@@ -79,7 +79,7 @@ public class MainApp extends Application {
         // Title screen
         if (GameStatus == 1) {
           g.setFill(Color.rgb(4, 201, 184));
-          g.fillRect(0, 0, 500, 800);
+          g.fillRect(0, 0, 1280,720);
           g.setFill(Color.rgb(238, 73, 43));
           g.fillRect(25, 25, 450, 750);
           g.setFill(Color.rgb(245, 134, 45));
@@ -120,11 +120,11 @@ public class MainApp extends Application {
               }
             });
 
-            canvas.setOnMouseMoved(e -> {
-              if ((e.getX() > 115 && e.getX() < 194) && (e.getY() > 500 && e.getY() < 581)) {
-                System.out.println("ARLO ARLO ARLO!");
-              }
-            });
+            // canvas.setOnMouseMoved(e -> {
+            //   if ((e.getX() > 115 && e.getX() < 194) && (e.getY() > 500 && e.getY() < 581)) {
+            //     System.out.println("ARLO ARLO ARLO!");
+            //   }
+            // });
         }
         }
 
