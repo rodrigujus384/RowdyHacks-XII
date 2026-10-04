@@ -38,6 +38,9 @@ public class Heist extends PlayState{
     
     public void update(Set<KeyCode> heldKeys) {
         super.update(heldKeys);
+        if(isButtonClicked()){
+            
+        }
     }
 
     
