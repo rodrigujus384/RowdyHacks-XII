@@ -63,14 +63,13 @@ public abstract class PlayState{
     }
 
     public void display(GraphicsContext g, Image floorTileTexture){
-        for(GameSprite s: objs)
-            s.displayWithTranslation(g, player.pos);
-        System.out.println(player.pos.getX());
         for(int r = 0; r<getGridHeight(); r++)
             for(int c = 0; c<getGridWidth(); c++)
                 g.drawImage(floorTileTexture, 
-                    r*MainApp.gridCellSize-player.pos.getX(), 
-                    c*MainApp.gridCellSize-player.pos.getY());
+                    r*MainApp.scale-player.pos.getX(), 
+                    c*MainApp.scale-player.pos.getY());
+        for(GameSprite s: objs)
+            s.displayWithTranslation(g, player.pos);
         player.display(g);
     }
 

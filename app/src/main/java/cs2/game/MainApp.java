@@ -27,13 +27,16 @@ public class MainApp extends Application {
 
   
   // Images created
+  static final int gridCellSize = 30;
+  static final int scaleMult = 3;
+  static final int scale = gridCellSize * scaleMult;
   static final Image Default = new Image("file:imgs/ImageNotFound.png");
-  static final Image playerImg = new Image("file:imgs/roadrunner.png");
+  static final Image playerImg = new Image("file:imgs/roadrunner.png", gridCellSize * scaleMult, gridCellSize * scaleMult, true, true);
   static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
   static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
   static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
   static final Image Bubble = new Image("file:imgs/speech_bubble.png", 75, 75, true, true);
-  static final int gridCellSize = 30;
+  static final Image Store1 = new Image("file:imgs/store_floor1.png", gridCellSize * scaleMult, gridCellSize * scaleMult, true, true);
 
 
   // Variables initialized
