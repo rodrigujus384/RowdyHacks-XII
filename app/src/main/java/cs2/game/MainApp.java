@@ -45,7 +45,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 4; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
+  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
