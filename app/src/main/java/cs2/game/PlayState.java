@@ -1,28 +1,49 @@
 package cs2.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
+
+import cs2.util.Vec2;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 public abstract class PlayState{
     //class variables
     private ArrayList<GameSprite> objs;
-    private Boolean[][] grid;
+    private HashMap<Vec2, GameSprite> objFromPos;
+    private boolean[][] grid;
     Player player;
 
     // Constructs the needed sprites
-    public PlayState(Player py, int x, int y){
+    public PlayState(int x, int y){
         this.objs = new ArrayList<GameSprite>();
-        this.player = py; 
-        grid = new Boolean[y][x];
+        this.player = new Player();
+        grid = new boolean[y][x];
+    }
+
+    public int getGridWidth(){ return grid[0].length; }
+
+    public int getGridHeight(){ return grid.length; }
+
+    public void addObjects(GameSprite[] newObjs){
+        for(GameSprite s: newObjs){
+            objs.add(s);
+            objFromPos.put(s.gridPos, s);
+        }
+    }
+
+    public void update(Set<KeyCode> heldKeys){
+        movement(heldKeys);
     }
 
     // Handles movement in Heist and Party
-    public void movement(Set<KeyCode> s){
-        if (s.contains(KeyCode.UP) || s.contains(KeyCode.W)) {player.moveUp();}
-        if (s.contains(KeyCode.LEFT) || s.contains(KeyCode.A)) {player.moveLeft();}
-        if (s.contains(KeyCode.RIGHT) || s.contains(KeyCode.D)) {player.moveRight();}
-        if (s.contains(KeyCode.DOWN) || s.contains(KeyCode.S)) {player.moveDown();}
+    public void movement(Set<KeyCode> heldKeys){
+        if (heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) {player.moveUp();}
+        if (heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A)) {player.moveLeft();}
+        if (heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D)) {player.moveRight();}
+        if (heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S)) {player.moveDown();}
     }
 
     // Handles collison in Heist and Party
@@ -33,11 +54,33 @@ public abstract class PlayState{
         return true;
     }
 
-    public int getGridWidth(){
-        return grid[0].length;
+    public void display(GraphicsContext g, Image floorTileTexture){
+        player.display(g);
+        for(GameSprite s: objs)
+            s.display(g);
+        for(int r = 0; r<getGridHeight(); r++)
+            for(int c = 0; c<getGridWidth(); c++)
+                g.drawImage(floorTileTexture, r*MainApp.gridCellSize, c*MainApp.gridCellSize);
     }
 
-    public int getGridHeight(){
-        return grid.length;
+    public GameSprite objAbovePlayer(){
+        Vec2 xy = player.getGridPos();
+        if(grid[(int)xy.getY()-1][(int)xy.getX()])
+            return objFromPos.get(xy);
+        return null;
+    }
+
+    public GameSprite objAdjacentToPlayer(){
+        Vec2 xy = player.getGridPos();
+        int x = (int)xy.getX(), y = (int)xy.getY();
+        if(grid[y-1][x])
+            return objFromPos.get(new Vec2(x, y-1));
+        if(grid[y][x+1])
+            return objFromPos.get(new Vec2(x+1, y));
+        if(grid[y+1][x])
+            return objFromPos.get(new Vec2(x, y+1));
+        if(grid[y][x-1])
+            return objFromPos.get(new Vec2(x-1, y));
+        return null;
     }
 }

@@ -73,6 +73,10 @@ public class Shelves {
             shelves.add(new Shelf(i,new Vec2(x, y), alarmFrequency));
         }
     }
+
+    public ArrayList<Shelf> getShelves(){
+        return shelves;
+    }
     
     public void update(double deltaTime) {
         for (Shelf sh : shelves) {
