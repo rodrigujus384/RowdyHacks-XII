@@ -19,6 +19,7 @@ public abstract class PlayState{
     // Constructs the needed sprites
     public PlayState(int x, int y){
         this.objs = new ArrayList<GameSprite>();
+        this.objFromPos = new HashMap<Vec2, GameSprite>();
         this.player = new Player();
         grid = new boolean[y][x];
     }
@@ -26,6 +27,13 @@ public abstract class PlayState{
     public int getGridWidth(){ return grid[0].length; }
 
     public int getGridHeight(){ return grid.length; }
+
+    public void addObjects(ArrayList<? extends GameSprite> newObjs){
+        for(GameSprite s : newObjs){
+            objs.add(s); 
+            objFromPos.put(s.gridPos, s);
+        }
+    }
 
     public void addObjects(GameSprite[] newObjs){
         for(GameSprite s: newObjs){
@@ -54,13 +62,49 @@ public abstract class PlayState{
         return true;
     }
 
-    public void display(GraphicsContext g, Image floorTileTexture){
+    public void display(GraphicsContext g, Image floorTileTexture) {
+
+        Vec2 playerPos = player.getGridPos();
+
+        double cameraX =
+            playerPos.getX() * MainApp.gridCellSize - 640;
+
+        double cameraY =
+            playerPos.getY() * MainApp.gridCellSize - 360;
+
+        int tileSize = MainApp.gridCellSize;
+
+        // Floor starts at the player's grid position
+        int startCol = (int) playerPos.getX();
+
+        // Cover the full vertical screen around the player
+        int startRow = (int) playerPos.getY() - 360 / tileSize;
+        int endRow = (int) playerPos.getY() + 360 / tileSize;
+
+        // Draw enough columns to fill the screen to the right
+        int endCol = startCol + 1280 / tileSize + 1;
+
+        for (int row = startRow; row <= endRow; row++) {
+            for (int col = startCol; col <= endCol; col++) {
+
+                g.drawImage(
+                    floorTileTexture,
+                    col * tileSize - cameraX,
+                    row * tileSize - cameraY
+                );
+            }
+        }
+
+        // Player
         player.display(g);
-        for(GameSprite s: objs)
-            s.display(g);
-        for(int r = 0; r<getGridHeight(); r++)
-            for(int c = 0; c<getGridWidth(); c++)
-                g.drawImage(floorTileTexture, r*MainApp.gridCellSize, c*MainApp.gridCellSize);
+
+        // Shelves
+        for (GameSprite s : objs) {
+            s.displayWithTranslation(
+                g,
+                new Vec2(cameraX, cameraY)
+            );
+        }
     }
 
     public GameSprite objAbovePlayer(){
