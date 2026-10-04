@@ -10,7 +10,7 @@ public class Player extends Sprite {
   }
  
   public void display(GraphicsContext g) { 
-    g.drawImage(img, 640, 360);
+    g.drawImage(img, 640-MainApp.scale/2, 360-MainApp.scale/2);
   }
 
   public Vec2 getGridPos(){

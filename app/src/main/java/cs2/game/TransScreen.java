@@ -3,6 +3,7 @@ package cs2.game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class TransScreen implements Screen {
 
@@ -10,7 +11,7 @@ public class TransScreen implements Screen {
     static final Image store1 = new Image("file:imgs/liqa_sto.png",250,250,true,true);
     static final Image store2 = new Image("file:imgs/shindig_town.png", 250,250,true,true);
     static final Image store3 = new Image("file:imgs/snacs.png",250,250,true,true);
-
+    Font Daydream = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),100);
 
 
     public TransScreen(GraphicsContext g) {
@@ -26,7 +27,11 @@ public class TransScreen implements Screen {
     }
 
     public void draw2() { // this one is for transitioning from a heist to a party
-
+        g.setFill(Color.BLACK);
+        g.fillRect(0, 0, 1280, 720);
+        g.setFont(Daydream);
+        g.setFill(Color.WHITE);
+        g.fillText("TEST", 100, 100);
     }
 
     public void renderP2H() {

@@ -14,7 +14,7 @@ public class Heist extends PlayState{
     private Integer resources; 
     private String name;
     private Shelves shelves; 
-    static final Image ShelfImg = new Image("file:imgs/store_shelf_empty_alarm_off.png", MainApp.gridCellSize * MainApp.scaleMult, MainApp.gridCellSize * MainApp.scaleMult, true, true);
+    static final Image ShelfImg = new Image("file:imgs/store_shelf_empty_alarm_off.png", MainApp.scale, MainApp.scale, true, true);
 
 
     public Heist(GraphicsContext g, int x, int y, Integer resources, String name) {
