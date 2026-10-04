@@ -16,7 +16,7 @@ public class Shelf extends GameSprite{
 
     public Shelf(Image i, Vec2 p, double alarmfrequency) {
         super(i, p);
-        
+        this.interactable = true;
         this.resources = (int)(Math.random() * 6);
         this.isAlarm = alarmInstall(alarmfrequency);
     }

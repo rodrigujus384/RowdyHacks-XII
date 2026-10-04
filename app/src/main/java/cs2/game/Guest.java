@@ -21,6 +21,7 @@ public class Guest extends GameSprite {
 
     public Guest(Image i, Vec2 p) {
       super(randomSkin(), p);
+      this.interactable = true;
     }
 
     public static Image randomSkin() {

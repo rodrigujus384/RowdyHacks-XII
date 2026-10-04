@@ -51,6 +51,7 @@ public class MainApp extends Application {
   Set<KeyCode> inputs = new HashSet<KeyCode>();
   static int PartyNum = 1;
   int GuestLock = 0;
+  static KeyPrompt kp = new KeyPrompt();
 
 
 

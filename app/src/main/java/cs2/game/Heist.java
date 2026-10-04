@@ -39,7 +39,7 @@ public class Heist extends PlayState{
 
     
     public void update(Set<KeyCode> heldKeys) {
-        super.update(heldKeys);
+        super.movement(heldKeys);
         if(isButtonClicked(heldKeys)){
             Shelf shelf = (Shelf)objAdjacentToPlayer();
             if(shelf != null){
