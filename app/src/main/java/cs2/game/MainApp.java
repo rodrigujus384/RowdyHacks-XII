@@ -247,7 +247,8 @@ public class MainApp extends Application {
           ToPartyScreen.renderH2P(selectedStore, selectedResource);
         }
 
-      
+      if(kp.isVisible)
+        g.drawImage(kp.img, 0, 0);
     }
     };
     timer.start();
