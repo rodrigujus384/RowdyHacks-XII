@@ -71,6 +71,10 @@ public class MainApp extends Application {
   Party PartyScreen;
   Outro OutroScreen;
 
+  //Intialize Selected Store for Heist 
+  String selectedStore;
+  Integer selectedResource;  
+
 
   @SuppressWarnings("incomplete-switch")
   public void start(Stage stage) {
@@ -101,8 +105,14 @@ public class MainApp extends Application {
               if(howScreen.isButtonClick(event.getX(), event.getY())) {GameStatus = 0;}
             }
             if (GameStatus == 6) { 
-              if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {System.out.println("SNACKS");}
-              else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("SUPPLIES");}
+              if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {
+                selectedStore = "Snacks";
+                selectedResource = snacks;
+              }
+              else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {
+                selectedStore = "Supplies";
+                selectedResource = snacks;
+                System.out.println("SUPPLIES");}
               else if (TransScreen.isButtonClick(event.getX(), event.getY()) == 3) {System.out.println("ALCOHOL");}}
       });
 
