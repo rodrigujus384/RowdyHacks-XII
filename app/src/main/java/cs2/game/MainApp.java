@@ -67,6 +67,9 @@ public class MainApp extends Application {
   static Integer partySupplies = 4;
   static double moveSpeed = 9; 
 
+  //Stores resource results from Heist
+  Integer results; 
+
   //Intializes Screens 
   StartScreen startScreen;
   HowToPlayScreen howScreen;
@@ -201,7 +204,22 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-          if (heistAcum > 30*60) {GameStatus = 7; heistAcum = 0;}
+          if (heistAcum > 30*60) {
+            switch(heistScreen.getName()){
+              case "Snacks":
+                results = snacks;
+                break;
+              
+              case "Party Supplies":
+                results = partySupplies; 
+                break;
+
+              case "Alcohol":
+                results = alcohol;
+                break; 
+            }
+            GameStatus = 7; 
+            heistAcum = 0;}
       }
 
       //END GAME
