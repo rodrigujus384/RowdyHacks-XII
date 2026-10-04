@@ -55,5 +55,11 @@ public class Shelf extends GameSprite{
             }
         }
     }
+
+    public int removeResources(){
+        int temp = resources.intValue();
+        resources.valueOf(0);
+        return temp;
+    }
     
 }

@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 public class Heist extends PlayState{
+    private int selectHeld; 
 
     private GraphicsContext g;
     private Integer resources; 
@@ -31,16 +32,25 @@ public class Heist extends PlayState{
         super.display(g, new Image("file:imgs/store_floor1.png")); 
     }
 
-    public boolean isButtonClicked(){
-        return false; 
+    public boolean isButtonClicked(Set<KeyCode> heldKeys){
+        return heldKeys.contains(KeyCode.SPACE);
     }
 
     
     public void update(Set<KeyCode> heldKeys) {
         super.update(heldKeys);
-        if(isButtonClicked()){
-            
+        if(isButtonClicked(heldKeys)){
+            Shelf shelf = (Shelf)objAdjacentToPlayer();
+            if(shelf != null){
+                selectHeld++;
+                if(selectHeld >= 1*60) { 
+                    resources +=     shelf.removeResources();
+                    selectHeld = 0; 
+                }
+            }
+            else{ selectHeld = 0;}
         }
+        else { selectHeld = 0;}
     }
 
     
