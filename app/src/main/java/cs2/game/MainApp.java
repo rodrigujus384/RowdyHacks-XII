@@ -1,5 +1,7 @@
 // THE GAME RUNS WITH
 // ./gradlew run -Pmain=cs2.game.MainApp
+// or just
+// ./gradlew run
 
 package cs2.game;
 
