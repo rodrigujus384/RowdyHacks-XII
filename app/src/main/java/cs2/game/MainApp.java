@@ -1,5 +1,7 @@
 // THE GAME RUNS WITH
 // ./gradlew run -Pmain=cs2.game.MainApp
+// or just
+// ./gradlew run
 
 package cs2.game;
 
@@ -180,7 +182,7 @@ public class MainApp extends Application {
 
           if (noiseComplaint > 99) {GameStatus = 6; GuestLock = 0;}
           if (guestHappiness < 0) {GameStatus = 6; GuestLock = 0;}
-          if (guestHappiness > 99) {GameStatus = 4;}
+          if (GuestLock > 300*60) {GameStatus = 4;}
       }
 
         // HEIST GAME
