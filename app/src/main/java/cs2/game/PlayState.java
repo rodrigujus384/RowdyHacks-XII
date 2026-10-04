@@ -19,7 +19,10 @@ public abstract class PlayState{
 
     // Handles movement in Heist and Party
     public void movement(Set<KeyCode> s){
-        //TODO: implement movement for Player
+        if (s.contains(KeyCode.UP) || s.contains(KeyCode.W)) {player.moveUp();}
+        if (s.contains(KeyCode.LEFT) || s.contains(KeyCode.A)) {player.moveLeft();}
+        if (s.contains(KeyCode.RIGHT) || s.contains(KeyCode.D)) {player.moveRight();}
+        if (s.contains(KeyCode.DOWN) || s.contains(KeyCode.S)) {player.moveDown();}
     }
 
     // Handles collison in Heist and Party

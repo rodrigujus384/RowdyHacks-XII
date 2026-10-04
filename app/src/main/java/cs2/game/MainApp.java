@@ -40,6 +40,9 @@ public class MainApp extends Application {
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
   static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen
   int storyAcum;
+  Set<KeyCode> inputs = new HashSet<KeyCode>();
+
+
 
   //'resources'
   static int guestHappiness;
@@ -85,21 +88,45 @@ public class MainApp extends Application {
           startScreen.render(); 
         }
 
+        //INTRO
         else if (GameStatus == 1) {
         IntroScreen.render();
       }
 
-        else if (GameStatus == 2) {
+        //PARTY GAME
+        else if (GameStatus == 2) {  
+          canvas.setFocusTraversable(true);
+          canvas.requestFocus();
+          canvas.setOnKeyPressed(e -> {
+            inputs.add(e.getCode());
+          });
+
+          //PartyScreen.render();
+
+          canvas.setOnKeyReleased(e -> {
+            inputs.remove(e.getCode());
+          });
       }
 
+        //HEIST GAME
         else if (GameStatus == 3) {
+          canvas.setFocusTraversable(true);
+          canvas.requestFocus();
+          canvas.setOnKeyPressed(e -> {
+            inputs.add(e.getCode());
+          });
+
+          //HeistScreen.render();
+
+          canvas.setOnKeyReleased(e -> {
+            inputs.remove(e.getCode());
+          });
       }
 
         else if (GameStatus == 4) {
       }
 
         else if (GameStatus == 5) { 
-          System.out.println("Rendering How Screen");
           howScreen.render();
         }
 
