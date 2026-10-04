@@ -40,6 +40,7 @@ public class MainApp extends Application {
   static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
   static final Image Bubble = new Image("file:imgs/speech_bubble.png", 75, 75, true, true);
   static final Image Store1 = new Image("file:imgs/store_floor1.png", scale, scale, true, true);
+  static final Image HouseFloor = new Image("file:imgs/house_floor1.png", scale, scale, true, true);
 
 
   // Variables initialized
@@ -53,10 +54,10 @@ public class MainApp extends Application {
 
 
   //'resources'
-  static Integer guestHappiness;
-  static Integer musicVolume;
-  static Integer snacks;
-  static Integer alcohol;
+  static Integer guestHappiness = 20;
+  static Integer musicVolume = 30;
+  static Integer snacks = 10;
+  static Integer alcohol = 5;
   static double moveSpeed = 9; 
 
   //Intializes Screens 
@@ -65,6 +66,7 @@ public class MainApp extends Application {
   Intro IntroScreen;
   Heist heistScreen; 
   TransScreen TransScreen;
+  Party PartyScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -80,6 +82,7 @@ public class MainApp extends Application {
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
     heistScreen = new Heist(g, 15, 15, 0, "Alcholol"); 
+    PartyScreen = new Party(g, 15, 15);
 
     type = 0; 
     TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);
@@ -121,12 +124,17 @@ public class MainApp extends Application {
           canvas.setOnKeyPressed(e -> {
             inputs.add(e.getCode());
           });
+          
+          if (inputs.contains(KeyCode.Z)) {guestHappiness--;}
+          if (inputs.contains(KeyCode.X)) {guestHappiness++;}
 
-          //PartyScreen.render();
+          PartyScreen.render();
 
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
+
+          if (guestHappiness < 0) {GameStatus = 6;}
       }
 
         else if (GameStatus == 3) {
