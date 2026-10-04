@@ -38,24 +38,26 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 6; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen, 6 = p2h, 7 = h2p
+  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
+  int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
   static int PartyNum = 1;
 
 
 
   //'resources'
-  static int guestHappiness;
-  static int musicVolume;
-  static int snacks;
-  static int alcohol;
-  static double moveSpeed = 3;
+  static Integer guestHappiness;
+  static Integer musicVolume;
+  static Integer snacks;
+  static Integer alcohol;
+  static double moveSpeed = 3; 
 
   //Intializes Screens 
   StartScreen startScreen;
   HowToPlayScreen howScreen;
   Intro IntroScreen;
+  Heist heistScreen; 
   TransScreen TransScreen;
 
 
@@ -71,6 +73,9 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
+    heistScreen = new Heist(g, 30, 30, 0, "Alcholol"); 
+
+    type = 0; 
     TransScreen = new TransScreen(g);
 
     canvas.setOnMouseClicked(event -> {
@@ -113,8 +118,12 @@ public class MainApp extends Application {
           });
       }
 
-        //HEIST GAME
         else if (GameStatus == 3) {
+          heistScreen.render();
+      }
+
+      //HEIST GAME
+        else if (GameStatus == 4) {
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
@@ -126,9 +135,6 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-      }
-
-        else if (GameStatus == 4) {
       }
 
         else if (GameStatus == 5) { 
