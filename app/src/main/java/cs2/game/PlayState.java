@@ -63,15 +63,11 @@ public abstract class PlayState{
     }
 
     public void display(GraphicsContext g, Image floorTileTexture) {
-
         Vec2 playerPos = player.getGridPos();
 
-        double cameraX =
-            playerPos.getX() * MainApp.gridCellSize - 640;
-
-        double cameraY =
-            playerPos.getY() * MainApp.gridCellSize - 360;
-
+        double cameraX = playerPos.getX() * MainApp.gridCellSize - 640;
+        double cameraY = playerPos.getY() * MainApp.gridCellSize - 360;
+        
         int tileSize = MainApp.gridCellSize;
 
         // Floor starts at the player's grid position
@@ -86,12 +82,7 @@ public abstract class PlayState{
 
         for (int row = startRow; row <= endRow; row++) {
             for (int col = startCol; col <= endCol; col++) {
-
-                g.drawImage(
-                    floorTileTexture,
-                    col * tileSize - cameraX,
-                    row * tileSize - cameraY
-                );
+                g.drawImage(floorTileTexture, col * tileSize - cameraX, row * tileSize - cameraY);
             }
         }
 
@@ -100,15 +91,12 @@ public abstract class PlayState{
 
         // Shelves
         for (GameSprite s : objs) {
-            s.displayWithTranslation(
-                g,
-                new Vec2(cameraX, cameraY)
-            );
+            s.displayWithTranslation(g, new Vec2(cameraX, cameraY));
         }
     }
 
     public GameSprite objAbovePlayer(){
-        Vec2 xy = player.getGridPos();
+        Vec2 xy = player.getGridPos();                         
         if(grid[(int)xy.getY()-1][(int)xy.getX()])
             return objFromPos.get(xy);
         return null;

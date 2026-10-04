@@ -1,12 +1,14 @@
 package cs2.game;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
-public class Heist extends PlayState implements Screen {
+public class Heist extends PlayState{
 
     private GraphicsContext g;
     private Integer resources; 
@@ -33,14 +35,14 @@ public class Heist extends PlayState implements Screen {
         return false; 
     }
 
-    @Override
-    public void update() {
-        
+    
+    public void update(Set<KeyCode> heldKeys) {
+        super.update(heldKeys);
     }
 
-    @Override
+    
     public void render() {
-       draw();
+       draw(); 
     }
     
 }
