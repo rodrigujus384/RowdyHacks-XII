@@ -63,12 +63,15 @@ public abstract class PlayState{
     }
 
     public void display(GraphicsContext g, Image floorTileTexture){
-        player.display(g);
         for(GameSprite s: objs)
-            s.display(g);
+            s.displayWithTranslation(g, player.pos);
+        System.out.println(player.pos.getX());
         for(int r = 0; r<getGridHeight(); r++)
             for(int c = 0; c<getGridWidth(); c++)
-                g.drawImage(floorTileTexture, r*MainApp.gridCellSize, c*MainApp.gridCellSize);
+                g.drawImage(floorTileTexture, 
+                    r*MainApp.gridCellSize-player.pos.getX(), 
+                    c*MainApp.gridCellSize-player.pos.getY());
+        player.display(g);
     }
 
     public GameSprite objAbovePlayer(){
