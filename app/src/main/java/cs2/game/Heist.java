@@ -80,5 +80,9 @@ public class Heist extends PlayState{
     public void render() {
        draw(); 
     }
+
+    public String getName(){
+        return name; 
+    }
     
 }

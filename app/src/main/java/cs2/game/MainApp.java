@@ -73,12 +73,15 @@ public class MainApp extends Application {
   Intro IntroScreen;
   Heist heistScreen; 
   TransScreen TransScreen;
+  HeistToParty ToPartyScreen;
   Party PartyScreen;
   Outro OutroScreen;
 
   //Intialize Selected Store for Heist 
   String selectedStore = "Alcohol";
-  Integer selectedResource = alcohol;  
+  Integer selectedResource = alcohol; 
+  
+  Integer diffs = Integer.valueOf(selectedResource.intValue());
 
 
   @SuppressWarnings("incomplete-switch")
@@ -99,6 +102,7 @@ public class MainApp extends Application {
 
     type = 0; 
     TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);
+    ToPartyScreen = new HeistToParty(g);
 
     //CLICKABLES
     canvas.setOnMouseClicked(event -> {
@@ -113,17 +117,33 @@ public class MainApp extends Application {
               if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {
                 selectedStore = "Snacks";
                 selectedResource = snacks;
+                System.out.println("Snack");
+                diffs = Integer.valueOf(selectedResource.intValue());
+                heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
+                GameStatus = 3; 
               }
               else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {
                 selectedStore = "Party Supplies";
                 selectedResource = partySupplies;
+                System.out.println("Party Supplies");
+                diffs = Integer.valueOf(selectedResource.intValue());
+                heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
+                GameStatus = 3; 
               }
               else if (TransScreen.isButtonClick(event.getX(), event.getY()) == 3) {
                 selectedStore = "Alcohol";
                 selectedResource = alcohol;
+                System.out.println("Alcohol");
+                diffs = Integer.valueOf(selectedResource.intValue());
+                heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
+                GameStatus = 3; 
               }
-              heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
-              GameStatus = 3; 
+            }
+            if(GameStatus == 7){
+              if (ToPartyScreen.isButtonClick(event.getX(), event.getY()) == 4){
+                System.out.println("Go to Party");
+                GameStatus = 2;
+              }
             }
       });
 
@@ -202,7 +222,9 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-          if (heistAcum > 30*60) {GameStatus = 7; heistAcum = 0;}
+          if (heistAcum > 1*60) {
+            GameStatus = 7; 
+            heistAcum = 0;}
       }
 
       //END GAME
@@ -222,7 +244,7 @@ public class MainApp extends Application {
 
         // TRANSITION 2
         else if (GameStatus == 7) { 
-          TransScreen.renderH2P();
+          ToPartyScreen.renderH2P(selectedStore, selectedResource);
         }
 
       if(kp.isVisible)

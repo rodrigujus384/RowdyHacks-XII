@@ -19,6 +19,8 @@ public class TransScreen implements Screen {
     private Clickable snacks;
     private Clickable supplies;
     private Clickable alcohol; 
+    //private buttons and g
+    private Clickable toParty;
 
 
 
@@ -27,14 +29,15 @@ public class TransScreen implements Screen {
         this.snacks = new Clickable(new Vec2(65, 400), sks);
         this.supplies = new Clickable(new Vec2(490, 400), sup);
         this.alcohol = new Clickable(new Vec2(915, 400), alc);
+        this.toParty = new Clickable(new Vec2(490, 450), "Go To Party!");
     }
 
-        //Checks if the mouse overlaps with the button. 
+        //Checks if the mouse overlaps with thex button. 
     private boolean ButtonClicked(double buttonWidth, double buttonX, double buttonY, double mouseX, double mouseY) {
         return mouseX >= buttonX &&
                mouseX <= buttonX + buttonWidth &&
                mouseY >= buttonY &&
-               mouseY <= buttonY + 250;
+               (mouseY <= buttonY + 250 || mouseY <= buttonY + 80);
     }
 
         //Given button, chceks if that button is clicked or not 
@@ -49,9 +52,13 @@ public class TransScreen implements Screen {
 
         //Returns an integer based on what button is clicked 
     public int isButtonClick(double mouseX, double mouseY){
+        System.out.println("Is button clicked");
         if(isButtonClicked(snacks, mouseX, mouseY)) { return 1; }
-        if(isButtonClicked(supplies, mouseX, mouseY)) { return 2; }
-        if(isButtonClicked(alcohol, mouseX, mouseY)) { return 3; }
+        else if(isButtonClicked(supplies, mouseX, mouseY)) { return 2; }
+        else if(isButtonClicked(alcohol, mouseX, mouseY)) { return 3; }
+        else if(isButtonClicked(toParty, mouseX, mouseY)) { 
+            System.out.println("Reached");
+            return 4; }
         else {return -1;}
     }
 
@@ -75,7 +82,7 @@ public class TransScreen implements Screen {
         alcohol.display(g);
     }
 
-    public void draw2() { // this one is for transitioning from a heist to a party
+    public void draw2(String results) { // this one is for transitioning from a heist to a party
         g.setFill(Color.BLACK);
         g.fillRect(0, 0, 1280, 720);
         g.setFont(DaydreamTitle);
@@ -83,14 +90,18 @@ public class TransScreen implements Screen {
         g.fillText("Heist Summary", 335, 200);
         g.setFont(DaydreamSubtitle);
         g.fillText("ph", 400, 250);
+        g.fillText(results, 400, 350);
+
+        toParty.display(g);
     }
 
     public void renderP2H() {
         draw1();
     }
 
-    public void renderH2P() {
-        draw2();
+    public void renderH2P(String name, Integer resources) {
+        String results = String.format("%s  %d", name, resources.intValue());
+        draw2(results);
     }
 
     @Override
