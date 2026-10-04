@@ -70,7 +70,7 @@ public class Heist extends PlayState{
             System.out.println("Spaced is clicked");
             if(shelf != null){
                 System.out.println("Found Shelf!");
-                resources += shelf.removeResources();
+                resources=Integer.valueOf(shelf.removeResources() + resources.intValue());
             }
         }
         else { selectHeld = 0;}
