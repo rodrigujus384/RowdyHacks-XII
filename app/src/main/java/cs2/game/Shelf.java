@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Shelf extends GameSprite{
-    Integer[] resources; 
+    Integer resources; 
 
     boolean isAlarm;
     boolean isAlert; 
@@ -14,10 +14,10 @@ public class Shelf extends GameSprite{
     double alertTimer = 2.0;
     double timePassed = 0; 
 
-    public Shelf(Image i, Vec2 p, Integer[] r, double alarmfrequency) {
+    public Shelf(Image i, Vec2 p, double alarmfrequency) {
         super(i, p);
         
-        this.resources = r;
+        this.resources = (int)(Math.random() * 6);
         this.isAlarm = alarmInstall(alarmfrequency);
     }
 

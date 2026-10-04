@@ -38,17 +38,18 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen
+  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
+  int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
 
 
 
   //'resources'
-  static int guestHappiness;
-  static int musicVolume;
-  static int snacks;
-  static int alcohol;
+  static Integer guestHappiness;
+  static Integer musicVolume;
+  static Integer snacks;
+  static Integer alcohol;
 
   //Intializes Screens 
   StartScreen startScreen;
@@ -68,6 +69,8 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
+
+    type = 0; 
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
@@ -108,8 +111,12 @@ public class MainApp extends Application {
           });
       }
 
-        //HEIST GAME
         else if (GameStatus == 3) {
+        
+      }
+
+      //HEIST GAME
+        else if (GameStatus == 4) {
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
@@ -121,9 +128,6 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-      }
-
-        else if (GameStatus == 4) {
       }
 
         else if (GameStatus == 5) { 
