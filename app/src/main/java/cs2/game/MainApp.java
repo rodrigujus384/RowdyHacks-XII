@@ -41,7 +41,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
+  static int GameStatus = 6; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -79,16 +79,21 @@ public class MainApp extends Application {
     heistScreen = new Heist(g, 30, 30, 0, "Alcholol"); 
 
     type = 0; 
-    TransScreen = new TransScreen(g);
+    TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);
 
+    //CLICKABLES
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
               if(startScreen.isButtonClick(event.getX(), event.getY()) == 1) {GameStatus = 1;}
               else if(startScreen.isButtonClick(event.getX(), event.getY()) == 2) {GameStatus = 5;}
               else {System.out.println("Nothing was clicked");}
-            }else{
+            }else if (GameStatus == 5) {
               if(howScreen.isButtonClick(event.getX(), event.getY())) {GameStatus = 0;}
             }
+            if (GameStatus == 6) { 
+              if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {System.out.println("SNACKS");}
+              else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("SUPPLIES");}
+              else if (TransScreen.isButtonClick(event.getX(), event.getY()) == 3) {System.out.println("ALCOHOL");}}
       });
 
     // TIMER START

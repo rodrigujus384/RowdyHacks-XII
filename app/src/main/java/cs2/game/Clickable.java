@@ -13,6 +13,8 @@ public class Clickable extends Sprite {
 
     public Clickable(Vec2 p){ super(new Image("file:imgs/button_bg.png"), p); }
 
+    public Clickable(Vec2 p, Image img) {super(img, p);}
+
     public Clickable(Vec2 p, String text) {
         super(new Image("file:imgs/button_bg.png"), p);
         this.text = text; 
