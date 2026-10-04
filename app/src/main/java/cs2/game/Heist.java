@@ -65,9 +65,9 @@ public class Heist extends PlayState{
     
     public void update(Set<KeyCode> heldKeys) {
         super.movement(heldKeys);
+        Shelf shelf = (Shelf)adjacentInteractable(true);
         if(isButtonClicked(heldKeys)){
             System.out.println("Spaced is clicked");
-            Shelf shelf = (Shelf)adjacentInteractable(true);
             if(shelf != null){
                 System.out.println("Found Shelf!");
                 resources += shelf.removeResources();

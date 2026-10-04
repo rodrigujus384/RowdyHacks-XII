@@ -222,7 +222,7 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-          if (heistAcum > 45*60) {
+          if (heistAcum > 30*60) {
             GameStatus = 7; 
             heistAcum = 0;}
       }
