@@ -115,7 +115,18 @@ public class MainApp extends Application {
       }
 
         else if (GameStatus == 3) {
+          canvas.setFocusTraversable(true);
+          canvas.requestFocus();
+          canvas.setOnKeyPressed(e -> {
+            inputs.add(e.getCode());
+          });
+          
+          heistScreen.update(inputs);
           heistScreen.render();
+
+          canvas.setOnKeyReleased(e -> {
+            inputs.remove(e.getCode());
+          });
       }
 
       //HEIST GAME
@@ -124,7 +135,7 @@ public class MainApp extends Application {
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
             inputs.add(e.getCode());
-          });
+          }); 
 
           //HeistScreen.render();
 
