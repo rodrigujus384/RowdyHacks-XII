@@ -51,21 +51,29 @@ public abstract class PlayState{
 
     // Handles movement in Heist and Party
     public void movement(Set<KeyCode> heldKeys){
-        if ((heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) && (player.pos.getY()>-360+MainApp.scale/2)) {
+        if ((heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) 
+            && (player.pos.getY()>-360+MainApp.scale/2)
+            && !isCollison(player.pos.add(new Vec2(0, -0.2)))) {
             player.moveUp();
             standing = false;
         }
-        if ((heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A)) && (player.pos.getX()>-640+MainApp.scale/2)) {
+        if ((heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A)) 
+            && (player.pos.getX()>-640+MainApp.scale/2)
+            && !isCollison(player.pos.add(new Vec2(-0.7, 0)))) {
             player.moveLeft();
             standing = false;
             facingRight = false;
         }
-        if ((heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D)) && (player.pos.getX()<getGridWidth()*MainApp.scale-640-MainApp.scale/2)) {
+        if ((heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D)) 
+            && (player.pos.getX()<getGridWidth()*MainApp.scale-640-MainApp.scale/2)
+            && !isCollison(player.pos.add(new Vec2(35, 0)))) {
             player.moveRight();
             standing = false;
             facingRight = true;
         }
-        if ((heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S)) && (player.pos.getY()<getGridWidth()*MainApp.scale-360-MainApp.scale/2)) { 
+        if ((heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S)) 
+            && (player.pos.getY()<getGridWidth()*MainApp.scale-360-MainApp.scale/2)
+            && !isCollison(player.pos.add(new Vec2(0, 40)))) {
             player.moveDown();
             standing = false;
         }
@@ -85,10 +93,10 @@ public abstract class PlayState{
     }
 
     // Handles collison in Heist and Party
-    // public boolean isNoCollison(Vec2 pos){
-    //     int x = (int)Math.round(pos.getX()/MainApp.scale), y = (int)Math.round(pos.getY()/MainApp.scale);
-    //     return x>=0&&x<getGridWidth()&&y>=0&&;
-    // }
+    public boolean isCollison(Vec2 pos){
+        int x = (int)Math.floor(pos.getX()/MainApp.scale) + 7, y = (int)Math.floor(pos.getY()/MainApp.scale) + 4;
+        return x>=0&&y>=0&&x<getGridWidth()&&y<getGridHeight()&&grid[y][x];
+    }
 
     public void display(GraphicsContext g, Image floorTileTexture){
         g.fillRect(0,0,1280, 720);
