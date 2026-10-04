@@ -12,6 +12,7 @@ public class StartScreen implements Screen{
     private Clickable start;
     private Clickable howToPlay; 
     private GraphicsContext g; 
+    Font Daydream = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),75);
 
     private final double buttonHeight = 80;
 
@@ -35,8 +36,8 @@ public class StartScreen implements Screen{
 
         // Title
         g.setFill(Color.WHITE);
-        g.setFont(Font.font("Arial", 60));
-        g.fillText("PARTY ANIMAL", 400, 200);
+        g.setFont(Daydream);
+        g.fillText("PARTY ANIMAL", 200, 200);
 
         start.display(g);
         howToPlay.display(g);

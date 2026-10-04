@@ -2,6 +2,7 @@ package cs2.game;
 
 import cs2.util.Vec2;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -9,6 +10,10 @@ public class HowToPlayScreen implements Screen {
 
     private GraphicsContext g;
     private Clickable back; 
+    Font DaydreamTitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),50);
+    Font DaydreamSubtitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),25);
+    static final Image bars = new Image("file:imgs/PartyBars.png");
+    static final Image info = new Image("file:imgs/Information.png", 200, 200, true, true);
 
     private final double buttonHeight = 80;
 
@@ -35,15 +40,18 @@ public class HowToPlayScreen implements Screen {
 
         // Title
         g.setFill(Color.BLACK);
-        g.setFont(Font.font("Arial", 45));
-        g.fillText("HOW TO PLAY", 480, 170);
+        g.setFont(DaydreamTitle);
+        g.fillText("HOW TO PLAY", 400, 170);
 
         // Instructions
-        g.setFont(Font.font("Arial", 25));
+        g.setFont(DaydreamSubtitle);
 
-        g.fillText("WASD - Move", 350, 250);
-        g.fillText("E - Interact", 350, 300);
-        g.fillText("SPACE - Jump", 350, 350);
+        g.fillText("WASD or Arrow keys to move", 350, 250);
+        g.fillText("E to Interact", 480, 300);
+
+        g.drawImage(bars, 275, 325);
+        g.drawImage(info, 500, 325);
+        
 
         //back button
         back.display(g);
