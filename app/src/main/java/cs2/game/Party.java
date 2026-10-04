@@ -1,7 +1,9 @@
 package cs2.game;
 
+import java.util.ArrayList;
 import java.util.Set;
 
+import cs2.util.Vec2;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
@@ -10,11 +12,30 @@ public class Party extends PlayState {
 
     private int selectHeld; 
     private GraphicsContext g;
+      ArrayList<Guest> guests = new ArrayList<>();
+
 
     //@Override 
     public Party(GraphicsContext g, int x, int y){
         super(x, y);
         this.g = g;
+    }
+
+    public void invite() {
+        guests.clear();
+            for (int i = 0; i < (((int) (Math.random() * 6) + 4) * MainApp.PartyNum); i++) {
+              guests.add(new Guest(MainApp.Default , new Vec2(((int) (Math.random() * 14)),((int) (Math.random() * 14)))));
+        }
+        this.addObjects(guests);
+    }
+
+    public void checkIn() {
+        // Loops through guests
+          for (Guest f : guests) {
+            f.roam();
+            f.Hunger();
+            f.Thirst();
+          }
     }
 
     private void draw(){

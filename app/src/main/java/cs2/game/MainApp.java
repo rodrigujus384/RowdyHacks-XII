@@ -45,19 +45,20 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 2; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
+  static int GameStatus = 2; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
   static int PartyNum = 1;
+  int GuestLock = 0;
 
 
 
   //'resources'
-  static Integer guestHappiness = 20;
-  static Integer musicVolume = 30;
-  static Integer snacks = 10;
-  static Integer alcohol = 5;
+  static Integer guestHappiness = 40;
+  static Integer musicVolume = 0;
+  static Integer snacks = 4;
+  static Integer alcohol = 4;
   static double moveSpeed = 9; 
 
   //Intializes Screens 
@@ -119,25 +120,38 @@ public class MainApp extends Application {
 
         //PARTY GAME
         else if (GameStatus == 2) {  
+          if (GuestLock == 0) {
+            PartyScreen.invite();
+            }
+          GuestLock ++;
+
+
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
             inputs.add(e.getCode());
           });
           
-          if (inputs.contains(KeyCode.Z)) {guestHappiness--;}
-          if (inputs.contains(KeyCode.X)) {guestHappiness++;}
+          // if (inputs.contains(KeyCode.Z)) {guestHappiness--;}
+          // if (inputs.contains(KeyCode.X)) {guestHappiness++;}
+
+          if (snacks < 1) {guestHappiness--;}
+          if (alcohol < 1) {guestHappiness--;}
 
           PartyScreen.update(inputs);
           PartyScreen.render();
+
+          PartyScreen.checkIn();
 
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
 
-          if (guestHappiness < 0) {GameStatus = 6;}
+          if (guestHappiness < 0) {GameStatus = 6; GuestLock = 0;}
+          if (guestHappiness > 99) {GameStatus = 4;}
       }
 
+        // HEIST GAME
         else if (GameStatus == 3) {
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
@@ -153,29 +167,22 @@ public class MainApp extends Application {
           });
       }
 
-      //HEIST GAME
+      //END GAME
         else if (GameStatus == 4) {
-          canvas.setFocusTraversable(true);
-          canvas.requestFocus();
-          canvas.setOnKeyPressed(e -> {
-            inputs.add(e.getCode());
-          }); 
 
-          //HeistScreen.render();
-
-          canvas.setOnKeyReleased(e -> {
-            inputs.remove(e.getCode());
-          });
       }
 
+        //how-to
         else if (GameStatus == 5) { 
           howScreen.render();
         }
 
+        // TRANSITION 1
         else if (GameStatus == 6) {
           TransScreen.renderP2H();
       }
 
+        // TRANSITION 2
         else if (GameStatus == 7) { 
           TransScreen.renderH2P();
         }

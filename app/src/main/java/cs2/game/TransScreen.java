@@ -67,6 +67,8 @@ public class TransScreen implements Screen {
         g.setFont(DaydreamTitle);
         g.setFill(Color.WHITE);
         g.fillText("Which store?", 335, 100);
+        g.setFont(DaydreamSubtitle);
+        g.fillText("Whoops! Your party fucking sucked!", 220, 40);
         g.drawImage(traverse, Xstart, 100);
         snacks.display(g);
         supplies.display(g);
