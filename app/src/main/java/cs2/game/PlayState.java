@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import javafx.scene.input.KeyCode;
 
-public abstract class PlayState {
+public abstract class PlayState{
     //class variables
     private ArrayList<GameSprite> objs;
     private Boolean[][] grid;
@@ -28,5 +28,13 @@ public abstract class PlayState {
             if(player.intersection(s))
                 return false;
         return true;
+    }
+
+    public int getGridWidth(){
+        return grid[0].length;
+    }
+
+    public int getGridHeight(){
+        return grid.length;
     }
 }

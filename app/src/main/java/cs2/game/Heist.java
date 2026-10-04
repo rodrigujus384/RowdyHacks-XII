@@ -1,9 +1,11 @@
 package cs2.game;
 
-public class Heist implements Screen {
+public class Heist extends PlayState implements Screen {
 
-    public Heist(){
 
+    public Heist(Player py, int x, int y) {
+        super(py, x, y);
+        //TODO Auto-generated constructor stub
     }
 
     private void draw(){

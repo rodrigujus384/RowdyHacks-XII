@@ -4,7 +4,7 @@ import cs2.util.Vec2;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Shelf extends Sprite {
+public class Shelf extends GameSprite{
     Integer[] resources; 
 
     boolean isAlarm;
