@@ -75,7 +75,7 @@ public class TransScreen implements Screen {
         alcohol.display(g);
     }
 
-    public void draw2() { // this one is for transitioning from a heist to a party
+    public void draw2(String results) { // this one is for transitioning from a heist to a party
         g.setFill(Color.BLACK);
         g.fillRect(0, 0, 1280, 720);
         g.setFont(DaydreamTitle);
@@ -83,14 +83,16 @@ public class TransScreen implements Screen {
         g.fillText("Heist Summary", 335, 200);
         g.setFont(DaydreamSubtitle);
         g.fillText("ph", 400, 250);
+        g.fillText(results, 400, 350);
     }
 
     public void renderP2H() {
         draw1();
     }
 
-    public void renderH2P() {
-        draw2();
+    public void renderH2P(String name, Integer resources, Integer diffs) {
+        String results = String.format("%n: %d -> %d", name, diffs.intValue(), resources.intValue());
+        draw2(results);
     }
 
     @Override

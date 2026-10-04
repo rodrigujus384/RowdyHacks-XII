@@ -69,6 +69,9 @@ public class MainApp extends Application {
 
   //Stores resource results from Heist
   Integer results; 
+  String resultName; 
+  Integer diffs; 
+
 
   //Intializes Screens 
   StartScreen startScreen;
@@ -205,17 +208,21 @@ public class MainApp extends Application {
             inputs.remove(e.getCode());
           });
           if (heistAcum > 30*60) {
+            diffs = Integer.valueOf(results.intValue());
             switch(heistScreen.getName()){
               case "Snacks":
                 results = snacks;
+                resultName = "Snack";
                 break;
               
               case "Party Supplies":
                 results = partySupplies; 
+                resultName = "Party Supplies";
                 break;
 
               case "Alcohol":
                 results = alcohol;
+                resultName = "Alcohol";
                 break; 
             }
             GameStatus = 7; 
@@ -239,7 +246,7 @@ public class MainApp extends Application {
 
         // TRANSITION 2
         else if (GameStatus == 7) { 
-          TransScreen.renderH2P();
+          TransScreen.renderH2P(resultName, results, diffs);
         }
 
       
