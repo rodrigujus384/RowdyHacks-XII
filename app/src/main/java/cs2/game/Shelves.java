@@ -8,11 +8,13 @@ import javafx.scene.image.Image;
 
 public class Shelves {
     private ArrayList<Shelf> shelves;
+    private int scale = MainApp.scale;
 
     public Shelves(Image i, double alarmFrequency, int width, int height){
         shelves = new ArrayList<Shelf>(); 
         
-        int type = (int)(Math.random() * 3 + 1); 
+        int type = 1;
+        //int type = (int)(Math.random() * 3 + 1); 
         switch (type) {
             case 1:
                 lineShelves(i, shelves, alarmFrequency, width, height);
@@ -30,14 +32,14 @@ public class Shelves {
     }
 
     private void lineShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width,int height) {
-        for(int x = 0; x < width; x++)
-            for(int y = 0; y < height; y += 2)
+        for(int x = 0; x < width * scale; x += (width / 5))
+            for(int y = 0; y < height * scale; y += (height / 5))
                 shelves.add(new Shelf(i, new Vec2(x, y), alarmFrequency));
     }
 
     private void randomShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width, int height) {
         for(int x = 0; x < width; x++)
-            for(int y = 0; y < height; y += 2)
+            for(int y = 0; y < height; y++)
                 if(Math.random() < 0.5)
                     shelves.add(new Shelf(i, new Vec2(x, y), alarmFrequency));
     }
