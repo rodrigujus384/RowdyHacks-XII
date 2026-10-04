@@ -38,7 +38,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
+  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -56,6 +56,7 @@ public class MainApp extends Application {
   StartScreen startScreen;
   HowToPlayScreen howScreen;
   Intro IntroScreen;
+  Heist heistScreen; 
 
 
   @SuppressWarnings("incomplete-switch")
@@ -70,6 +71,7 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
+    heistScreen = new Heist(g, 30, 30, 0, "Alcholol"); 
 
     type = 0; 
 
@@ -113,7 +115,7 @@ public class MainApp extends Application {
       }
 
         else if (GameStatus == 3) {
-        
+          heistScreen.render();
       }
 
       //HEIST GAME
