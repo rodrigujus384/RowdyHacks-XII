@@ -9,7 +9,7 @@ public class GameSprite extends Sprite {
     Vec2 gridPos;
 
     public GameSprite(Image i, Vec2 p){
-        super(i, new Vec2(p.getX()*MainApp.gridCellSize, p.getY()*MainApp.gridCellSize));
+        super(i, new Vec2(p.getX()*MainApp.scale, p.getY()*MainApp.scale));
         gridPos = p;
     }
 

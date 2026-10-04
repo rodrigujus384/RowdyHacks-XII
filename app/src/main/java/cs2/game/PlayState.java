@@ -32,13 +32,14 @@ public abstract class PlayState{
         for(GameSprite s : newObjs){
             objs.add(s); 
             objFromPos.put(s.gridPos, s);
+            grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
         }
     }
-
     public void addObjects(GameSprite[] newObjs){
         for(GameSprite s: newObjs){
             objs.add(s);
             objFromPos.put(s.gridPos, s);
+            grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
         }
     }
 
@@ -48,10 +49,14 @@ public abstract class PlayState{
 
     // Handles movement in Heist and Party
     public void movement(Set<KeyCode> heldKeys){
-        if (heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) {player.moveUp();}
-        if (heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A)) {player.moveLeft();}
-        if (heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D)) {player.moveRight();}
-        if (heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S)) {player.moveDown();}
+        if ((heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) && (player.pos.getY()>0)) 
+            player.moveUp();
+        if (heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A) && (player.pos.getX()>0)) 
+            player.moveLeft();
+        if (heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D) && (player.pos.getX()<getGridWidth()*MainApp.scale-360+MainApp.scale/2)) 
+            player.moveRight();
+        if (heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S) && (player.pos.getY()<getGridWidth()*MainApp.scale-720+MainApp.scale/2))  
+            player.moveDown();
     }
 
     // Handles collison in Heist and Party
