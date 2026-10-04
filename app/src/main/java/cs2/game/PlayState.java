@@ -14,6 +14,7 @@ public abstract class PlayState{
     private ArrayList<GameSprite> objs;
     private HashMap<Vec2, GameSprite> objFromPos;
     private boolean[][] grid;
+    private boolean[][] iGrid;
     private Player player;
     private boolean standing = true;
     private boolean facingRight = true;
@@ -24,6 +25,13 @@ public abstract class PlayState{
         this.objFromPos = new HashMap<Vec2, GameSprite>();
         this.player = new Player();
         grid = new boolean[y][x];
+        iGrid = new boolean[y][x];
+        for(int i=0;i<y;i++)
+            for(int j=0;j<x;j++){
+                grid[i][j] = false;
+                iGrid[i][j] = false;
+            }
+                
     }
 
     public int getGridWidth(){ return grid[0].length; }
@@ -35,6 +43,8 @@ public abstract class PlayState{
             objs.add(s); 
             objFromPos.put(s.gridPos, s);
             grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
+            if(s.interactable)
+                iGrid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
         }
     }
     public void addObjects(GameSprite[] newObjs){
@@ -42,11 +52,24 @@ public abstract class PlayState{
             objs.add(s);
             objFromPos.put(s.gridPos, s);
             grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
+            if(s.interactable)
+                iGrid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
         }
     }
 
-    public void update(Set<KeyCode> heldKeys){
-        movement(heldKeys);
+    public abstract void update(Set<KeyCode> heldKeys);
+
+    public GameSprite adjacentInteractable(){
+        return adjacentInteractable(false);
+    }
+    public GameSprite adjacentInteractable(boolean justUp){
+        GameSprite s = justUp? objAbovePlayer() : objAdjacentToPlayer();
+        MainApp.kp.isVisible = s!=null;
+        if(s!=null)
+           MainApp.kp.pos = new Vec2(s.getPos().getX(), s.getPos().getY() + MainApp.scale/3);
+        System.out.println(MainApp.kp.pos.getX() + ",  " + MainApp.kp.pos.getY());
+        System.out.println(s!=null);
+        return s; 
     }
 
     // Handles movement in Heist and Party
@@ -111,8 +134,8 @@ public abstract class PlayState{
     }
 
     public GameSprite objAbovePlayer(){
-        Vec2 xy = player.getGridPos();                         
-        if(grid[(int)xy.getY()-1][(int)xy.getX()])
+        Vec2 xy = player.getGridPos();                   
+        if(iGrid[(int)xy.getY()-1][(int)xy.getX()])
             return objFromPos.get(xy);
         return null;
     }
@@ -120,13 +143,13 @@ public abstract class PlayState{
     public GameSprite objAdjacentToPlayer(){
         Vec2 xy = player.getGridPos();
         int x = (int)xy.getX(), y = (int)xy.getY();
-        if(grid[y-1][x])
+        if(iGrid[y-1][x])
             return objFromPos.get(new Vec2(x, y-1));
-        if(grid[y][x+1])
+        if(iGrid[y][x+1])
             return objFromPos.get(new Vec2(x+1, y));
-        if(grid[y+1][x])
+        if(iGrid[y+1][x])
             return objFromPos.get(new Vec2(x, y+1));
-        if(grid[y][x-1])
+        if(iGrid[y][x-1])
             return objFromPos.get(new Vec2(x-1, y));
         return null;
     }

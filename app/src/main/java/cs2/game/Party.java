@@ -12,7 +12,7 @@ public class Party extends PlayState {
 
     private int selectHeld; 
     private GraphicsContext g;
-      ArrayList<Guest> guests = new ArrayList<>();
+    ArrayList<Guest> guests = new ArrayList<>();
 
 
     //@Override 
@@ -78,13 +78,9 @@ public class Party extends PlayState {
     }
 
     public void update(Set<KeyCode> heldKeys) {
-        super.update(heldKeys);}
-
-    // @Override
-    // public void update() {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'update'");
-    // }
+        super.movement(heldKeys);
+        Guest g = (Guest)super.adjacentInteractable(false);
+    }
 
     public void render() {
        draw();
