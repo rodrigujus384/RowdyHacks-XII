@@ -13,7 +13,7 @@ public class Shelves {
     public Shelves(Image i, double alarmFrequency, int width, int height){
         shelves = new ArrayList<Shelf>(); 
         
-        int type = (int)(Math.random() * 2 + 1); 
+        int type = 1; 
         switch (type) {
             case 1:
                 lineShelves(i, shelves, alarmFrequency, width, height);
@@ -31,8 +31,8 @@ public class Shelves {
     }
 
     private void lineShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width,int height) {
-        for(int x = 0; x < width * 3; x += (width / 5))
-            for(int y = 0; y < height * 3; y += (height / 5))
+        for(int x = 0; x < width; x += 2)
+            for(int y = 0; y < height; y += 2)
                 shelves.add(new Shelf(i, new Vec2(x, y), alarmFrequency));
     }
 
