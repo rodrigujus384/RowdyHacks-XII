@@ -74,6 +74,10 @@ public class MainApp extends Application {
   Party PartyScreen;
   Outro OutroScreen;
 
+  //Intialize Selected Store for Heist 
+  String selectedStore;
+  Integer selectedResource;  
+
 
   @SuppressWarnings("incomplete-switch")
   public void start(Stage stage) {
@@ -87,7 +91,7 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
-    heistScreen = new Heist(g, 15, 15, 0, "Alcholol"); 
+    heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
     PartyScreen = new Party(g, 15, 15);
     OutroScreen = new Outro(g);
 
@@ -104,9 +108,21 @@ public class MainApp extends Application {
               if(howScreen.isButtonClick(event.getX(), event.getY())) {GameStatus = 0;}
             }
             if (GameStatus == 6) { 
-              if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {System.out.println("SNACKS"); GameStatus = 3;}
-              else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {System.out.println("SUPPLIES");}
-              else if (TransScreen.isButtonClick(event.getX(), event.getY()) == 3) {System.out.println("ALCOHOL");}}
+              if(TransScreen.isButtonClick(event.getX(), event.getY()) == 1) {
+                selectedStore = "Snacks";
+                selectedResource = snacks;
+              }
+              else if(TransScreen.isButtonClick(event.getX(), event.getY()) == 2) {
+                selectedStore = "Party Supplies";
+                selectedResource = partySupplies;
+              }
+              else if (TransScreen.isButtonClick(event.getX(), event.getY()) == 3) {
+                selectedStore = "Alcohol";
+                selectedResource = alcohol;
+              }
+              heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
+              GameStatus = 3; 
+            }
       });
 
     // TIMER START
