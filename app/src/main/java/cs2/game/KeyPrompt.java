@@ -10,8 +10,4 @@ public class KeyPrompt extends Sprite {
         super(new Image("file:imgs/convo5.png"), new Vec2(0,0));
         isVisible = false;
     }
-    public void display(GraphicsContext g){
-        if(this.isVisible)
-            g.drawImage(img, pos.getX(), pos.getY());
-    }
 }

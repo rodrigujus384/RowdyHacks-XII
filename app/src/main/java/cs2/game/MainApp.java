@@ -225,7 +225,8 @@ public class MainApp extends Application {
           TransScreen.renderH2P();
         }
 
-      
+      if(kp.isVisible)
+        g.drawImage(kp.img, 0, 0);
     }
     };
     timer.start();

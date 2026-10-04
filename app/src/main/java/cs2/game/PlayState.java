@@ -62,10 +62,6 @@ public abstract class PlayState{
     public GameSprite adjacentInteractable(boolean justUp){
         GameSprite s = justUp? objAbovePlayer() : objAdjacentToPlayer();
         MainApp.kp.isVisible = s!=null;
-        if(s!=null){
-           MainApp.kp.pos = new Vec2(s.getPos().getX(), s.getPos().getY() + MainApp.scale/3);
-           System.out.println("!!!!!!");
-        }
         return s; 
     }
 
