@@ -45,7 +45,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
+  static int GameStatus = 2; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -128,6 +128,7 @@ public class MainApp extends Application {
           if (inputs.contains(KeyCode.Z)) {guestHappiness--;}
           if (inputs.contains(KeyCode.X)) {guestHappiness++;}
 
+          PartyScreen.update(inputs);
           PartyScreen.render();
 
           canvas.setOnKeyReleased(e -> {
