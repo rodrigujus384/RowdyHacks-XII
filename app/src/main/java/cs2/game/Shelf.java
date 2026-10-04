@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Shelf extends GameSprite{
-    Integer resources; 
+    static Integer resources; 
 
     boolean isAlarm;
     boolean isAlert; 
@@ -56,7 +56,8 @@ public class Shelf extends GameSprite{
         }
     }
 
-    public int removeResources(){
+    public static int removeResources(){
+        System.out.println("Removed Resources");
         int temp = resources.intValue();
         resources.valueOf(0);
         return temp;

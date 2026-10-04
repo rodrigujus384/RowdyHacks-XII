@@ -13,17 +13,16 @@ public class Shelves {
     public Shelves(Image i, double alarmFrequency, int width, int height){
         shelves = new ArrayList<Shelf>(); 
         
-        int type = 1;
-        //int type = (int)(Math.random() * 3 + 1); 
+        int type = (int)(Math.random() * 2 + 1); 
         switch (type) {
             case 1:
                 lineShelves(i, shelves, alarmFrequency, width, height);
                 break;
             case 2: 
-                circleShelves(i, shelves, alarmFrequency, width, height);
+                randomShelves(i, shelves, alarmFrequency, width, height);
                 break;
             case 3: 
-                randomShelves(i, shelves, alarmFrequency, width, height);
+                circleShelves(i, shelves, alarmFrequency, width, height);
                 break;
             default:
                 lineShelves(i, shelves, alarmFrequency, width, height);
@@ -32,24 +31,24 @@ public class Shelves {
     }
 
     private void lineShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width,int height) {
-        for(int x = 0; x < width * scale; x += (width / 5))
-            for(int y = 0; y < height * scale; y += (height / 5))
+        for(int x = 0; x < width * 3; x += (width / 5))
+            for(int y = 0; y < height * 3; y += (height / 5))
                 shelves.add(new Shelf(i, new Vec2(x, y), alarmFrequency));
     }
 
     private void randomShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width, int height) {
-        for(int x = 0; x < width; x++)
-            for(int y = 0; y < height; y++)
+        for(int x = 0; x < width * 3; x += (width / 5))
+            for(int y = 0; y < height * 3; y += (height / 5))
                 if(Math.random() < 0.5)
                     shelves.add(new Shelf(i, new Vec2(x, y), alarmFrequency));
     }
 
     private void circleShelves(Image i, ArrayList<Shelf> shelves, double alarmFrequency, int width, int height) {
-        int centerX = (width / 2);
-        int centerY = (height / 2);
+        int centerX = ((width * 3) / 2);
+        int centerY = ((height * 3) / 2);
 
         int radius = (height / 2);
-        int numOfShelves = height * 2;
+        int numOfShelves = height;
         for(int n = 0; n < numOfShelves; n++){
             double angle = 2 * Math.PI * n / numOfShelves; 
 

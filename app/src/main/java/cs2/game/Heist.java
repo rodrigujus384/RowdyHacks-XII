@@ -42,10 +42,12 @@ public class Heist extends PlayState{
         super.update(heldKeys);
         if(isButtonClicked(heldKeys)){
             Shelf shelf = (Shelf)objAdjacentToPlayer();
+            System.out.println(shelf);
             if(shelf != null){
                 selectHeld++;
+                System.out.println(selectHeld);
                 if(selectHeld >= 1*60) { 
-                    resources +=     shelf.removeResources();
+                    resources += shelf.removeResources();
                     selectHeld = 0; 
                 }
             }
