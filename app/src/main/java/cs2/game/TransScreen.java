@@ -90,8 +90,8 @@ public class TransScreen implements Screen {
         draw1();
     }
 
-    public void renderH2P(String name, Integer resources, Integer diffs) {
-        String results = String.format("%n: %d -> %d", name, diffs.intValue(), resources.intValue());
+    public void renderH2P(String name, Integer resources) {
+        String results = String.format("%s  %d", name, resources.intValue());
         draw2(results);
     }
 

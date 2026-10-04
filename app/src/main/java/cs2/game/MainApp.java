@@ -47,7 +47,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
+  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
   int storyAcum;
   int heistAcum;
   int type; 
@@ -67,12 +67,6 @@ public class MainApp extends Application {
   static Integer partySupplies = 4;
   static double moveSpeed = 9; 
 
-  //Stores resource results from Heist
-  Integer results; 
-  String resultName; 
-  Integer diffs; 
-
-
   //Intializes Screens 
   StartScreen startScreen;
   HowToPlayScreen howScreen;
@@ -83,8 +77,10 @@ public class MainApp extends Application {
   Outro OutroScreen;
 
   //Intialize Selected Store for Heist 
-  String selectedStore;
-  Integer selectedResource;  
+  String selectedStore = "Alcohol";
+  Integer selectedResource = alcohol; 
+  
+  Integer diffs = Integer.valueOf(selectedResource.intValue());
 
 
   @SuppressWarnings("incomplete-switch")
@@ -128,6 +124,7 @@ public class MainApp extends Application {
                 selectedStore = "Alcohol";
                 selectedResource = alcohol;
               }
+              diffs = Integer.valueOf(selectedResource.intValue());
               heistScreen = new Heist(g, 15, 15, selectedResource, selectedStore); 
               GameStatus = 3; 
             }
@@ -194,12 +191,13 @@ public class MainApp extends Application {
         // HEIST GAME
         else if (GameStatus == 3) {
           heistAcum++;
-          System.out.println(heistAcum);
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
             inputs.add(e.getCode());
           });
+          
+          
           
           heistScreen.update(inputs);
           heistScreen.render();
@@ -207,24 +205,7 @@ public class MainApp extends Application {
           canvas.setOnKeyReleased(e -> {
             inputs.remove(e.getCode());
           });
-          if (heistAcum > 30*60) {
-            diffs = Integer.valueOf(results.intValue());
-            switch(heistScreen.getName()){
-              case "Snacks":
-                results = snacks;
-                resultName = "Snack";
-                break;
-              
-              case "Party Supplies":
-                results = partySupplies; 
-                resultName = "Party Supplies";
-                break;
-
-              case "Alcohol":
-                results = alcohol;
-                resultName = "Alcohol";
-                break; 
-            }
+          if (heistAcum > 1*60) {
             GameStatus = 7; 
             heistAcum = 0;}
       }
@@ -246,7 +227,7 @@ public class MainApp extends Application {
 
         // TRANSITION 2
         else if (GameStatus == 7) { 
-          TransScreen.renderH2P(resultName, results, diffs);
+          TransScreen.renderH2P(selectedStore, selectedResource);
         }
 
       
