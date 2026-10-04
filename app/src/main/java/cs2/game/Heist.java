@@ -30,7 +30,6 @@ public class Heist extends PlayState{
         this.name = name;
 
         shelves = new Shelves(ShelfImg, 0.25, x, y);
-
         super.addObjects(shelves.getShelves());
         //TODO Auto-generated constructor stub
     }
@@ -67,16 +66,12 @@ public class Heist extends PlayState{
     public void update(Set<KeyCode> heldKeys) {
         super.movement(heldKeys);
         if(isButtonClicked(heldKeys)){
-            Shelf shelf = (Shelf)objAdjacentToPlayer();
+            System.out.println("Spaced is clicked");
+            Shelf shelf = (Shelf)adjacentInteractable(true);
             if(shelf != null){
-                selectHeld++;
-                System.out.println(selectHeld);
-                if(selectHeld >= 1*60) { 
-                    resources += shelf.removeResources();
-                    selectHeld = 0; 
-                }
+                System.out.println("Found Shelf!");
+                resources += shelf.removeResources();
             }
-            else{ selectHeld = 0;}
         }
         else { selectHeld = 0;}
     }

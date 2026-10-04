@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 
 public class Shelf extends GameSprite{
     static Integer resources; 
+    boolean isEmpty;
 
     boolean isAlarm;
     boolean isAlert; 
@@ -19,6 +20,7 @@ public class Shelf extends GameSprite{
         this.interactable = true;
         this.resources = (int)(Math.random() * 6);
         this.isAlarm = alarmInstall(alarmfrequency);
+        this.isEmpty = false; 
     }
 
     private boolean alarmInstall(double alarmfrequncy){
@@ -56,11 +58,13 @@ public class Shelf extends GameSprite{
         }
     }
 
-    public static int removeResources(){
-        System.out.println("Removed Resources");
-        int temp = resources.intValue();
-        resources.valueOf(0);
-        return temp;
+    public int removeResources(){
+        if(!isEmpty){
+            isEmpty = true; 
+            return resources.intValue();
+        }else{
+            return 0; 
+        }
     }
     
 }

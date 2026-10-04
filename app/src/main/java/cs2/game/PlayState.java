@@ -41,6 +41,7 @@ public abstract class PlayState{
             objs.add(s); 
             grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
             if(s.interactable)
+                System.out.println((int)s.gridPos.getX() + " : " + (int)s.gridPos.getY());
                 iGrid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
         }
     }
@@ -137,7 +138,9 @@ public abstract class PlayState{
     }
 
     public GameSprite objAbovePlayer(){
-        Vec2 xy = player.getGridPos();                   
+        Vec2 xy = player.getGridPos();            
+        System.out.println("Player Pos: " + xy.getX() + " " + xy.getY());  
+        System.out.println("Contains Shelf: " + iGrid[(int)xy.getY()-1][(int)xy.getX()]);    
         if(iGrid[(int)xy.getY()-1][(int)xy.getX()])
             return objFromPos(xy.add(new Vec2(0, -1)));
         return null;
