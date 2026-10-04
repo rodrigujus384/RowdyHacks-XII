@@ -42,8 +42,6 @@ public class Heist extends PlayState{
         super.update(heldKeys);
         if(isButtonClicked(heldKeys)){
             Shelf shelf = (Shelf)objAdjacentToPlayer();
-            System.out.println(player.getGridPos().getX() + " : " + player.getGridPos().getY());
-            System.out.println(shelf);
             if(shelf != null){
                 selectHeld++;
                 System.out.println(selectHeld);

@@ -14,7 +14,9 @@ public abstract class PlayState{
     private ArrayList<GameSprite> objs;
     private HashMap<Vec2, GameSprite> objFromPos;
     private boolean[][] grid;
-    Player player;
+    private Player player;
+    private boolean standing = true;
+    private boolean facingRight = true;
 
     // Constructs the needed sprites
     public PlayState(int x, int y){
@@ -49,25 +51,47 @@ public abstract class PlayState{
 
     // Handles movement in Heist and Party
     public void movement(Set<KeyCode> heldKeys){
-        if ((heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) && (player.pos.getY()>0)) 
+        if ((heldKeys.contains(KeyCode.UP) || heldKeys.contains(KeyCode.W)) && (player.pos.getY()>-360+MainApp.scale/2)) {
             player.moveUp();
-        if (heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A) && (player.pos.getX()>0)) 
+            standing = false;
+        }
+        if ((heldKeys.contains(KeyCode.LEFT) || heldKeys.contains(KeyCode.A)) && (player.pos.getX()>-640+MainApp.scale/2)) {
             player.moveLeft();
-        if (heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D) && (player.pos.getX()<getGridWidth()*MainApp.scale-360+MainApp.scale/2)) 
+            standing = false;
+            facingRight = false;
+        }
+        if ((heldKeys.contains(KeyCode.RIGHT) || heldKeys.contains(KeyCode.D)) && (player.pos.getX()<getGridWidth()*MainApp.scale-640-MainApp.scale/2)) {
             player.moveRight();
-        if (heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S) && (player.pos.getY()<getGridWidth()*MainApp.scale-720+MainApp.scale/2))  
+            standing = false;
+            facingRight = true;
+        }
+        if ((heldKeys.contains(KeyCode.DOWN) || heldKeys.contains(KeyCode.S)) && (player.pos.getY()<getGridWidth()*MainApp.scale-360-MainApp.scale/2)) { 
             player.moveDown();
+            standing = false;
+        }
+        if(standing){
+            if(facingRight)
+                player.img = MainApp.playerImg;
+            else
+                player.img = MainApp.playerImgLeft;
+        }
+        else{
+            if(facingRight)
+                player.img = MainApp.playerGif;
+            else
+                player.img = MainApp.playerGifLeft;
+        }
+        standing = true;
     }
 
     // Handles collison in Heist and Party
-    public boolean isNoCollison(){
-        for(GameSprite s: objs)
-            if(player.intersection(s))
-                return false;
-        return true;
-    }
+    // public boolean isNoCollison(Vec2 pos){
+    //     int x = (int)Math.round(pos.getX()/MainApp.scale), y = (int)Math.round(pos.getY()/MainApp.scale);
+    //     return x>=0&&x<getGridWidth()&&y>=0&&;
+    // }
 
     public void display(GraphicsContext g, Image floorTileTexture){
+        g.fillRect(0,0,1280, 720);
         for(int r = 0; r<getGridHeight(); r++)
             for(int c = 0; c<getGridWidth(); c++)
                 g.drawImage(floorTileTexture, 

@@ -32,6 +32,9 @@ public class MainApp extends Application {
   static final int scale = gridCellSize * scaleMult;
   static final Image Default = new Image("file:imgs/ImageNotFound.png");
   static final Image playerImg = new Image("file:imgs/roadrunner.png", scale, scale, true, true);
+  static final Image playerImgLeft = new Image("file:imgs/roadrunner2.png", scale, scale, true, true);
+  static final Image playerGif = new Image("file:imgs/player_run.gif", scale, scale, true, true);
+  static final Image playerGifLeft = new Image("file:imgs/player_run2.gif", scale, scale, true, true);
   static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
   static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
   static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
@@ -41,7 +44,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 6; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
+  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -54,7 +57,7 @@ public class MainApp extends Application {
   static Integer musicVolume;
   static Integer snacks;
   static Integer alcohol;
-  static double moveSpeed = 3; 
+  static double moveSpeed = 9; 
 
   //Intializes Screens 
   StartScreen startScreen;
@@ -76,7 +79,7 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
-    heistScreen = new Heist(g, 30, 30, 0, "Alcholol"); 
+    heistScreen = new Heist(g, 15, 15, 0, "Alcholol"); 
 
     type = 0; 
     TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);

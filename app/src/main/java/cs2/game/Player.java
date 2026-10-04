@@ -15,8 +15,8 @@ public class Player extends Sprite {
 
   public Vec2 getGridPos(){
     return new Vec2(
-      Math.round(this.pos.getX()/MainApp.scale * 2), 
-      Math.round(this.pos.getY()/MainApp.scale * 2));
+      Math.round(this.pos.getX()/MainApp.scale), 
+      Math.round(this.pos.getY()/MainApp.scale));
   }
 
   public void moveLeft() {
