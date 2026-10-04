@@ -12,7 +12,6 @@ import javafx.scene.input.KeyCode;
 public abstract class PlayState{
     //class variables
     private ArrayList<GameSprite> objs;
-    private HashMap<Vec2, GameSprite> objFromPos;
     private boolean[][] grid;
     private boolean[][] iGrid;
     private Player player;
@@ -22,7 +21,6 @@ public abstract class PlayState{
     // Constructs the needed sprites
     public PlayState(int x, int y){
         this.objs = new ArrayList<GameSprite>();
-        this.objFromPos = new HashMap<Vec2, GameSprite>();
         this.player = new Player();
         grid = new boolean[y][x];
         iGrid = new boolean[y][x];
@@ -41,7 +39,6 @@ public abstract class PlayState{
     public void addObjects(ArrayList<? extends GameSprite> newObjs){
         for(GameSprite s : newObjs){
             objs.add(s); 
-            objFromPos.put(s.gridPos, s);
             grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
             if(s.interactable)
                 iGrid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
@@ -50,7 +47,6 @@ public abstract class PlayState{
     public void addObjects(GameSprite[] newObjs){
         for(GameSprite s: newObjs){
             objs.add(s);
-            objFromPos.put(s.gridPos, s);
             grid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
             if(s.interactable)
                 iGrid [(int)s.gridPos.getY()][(int)s.gridPos.getX()] = true;
@@ -65,10 +61,10 @@ public abstract class PlayState{
     public GameSprite adjacentInteractable(boolean justUp){
         GameSprite s = justUp? objAbovePlayer() : objAdjacentToPlayer();
         MainApp.kp.isVisible = s!=null;
-        if(s!=null)
+        if(s!=null){
            MainApp.kp.pos = new Vec2(s.getPos().getX(), s.getPos().getY() + MainApp.scale/3);
-        System.out.println(MainApp.kp.pos.getX() + ",  " + MainApp.kp.pos.getY());
-        System.out.println(s!=null);
+           System.out.println("!!!!!!");
+        }
         return s; 
     }
 
@@ -133,10 +129,17 @@ public abstract class PlayState{
         player.display(g);
     }
 
+    private GameSprite objFromPos(Vec2 tgp){
+        for(GameSprite s: objs)
+            if(s.gridPos.getX()==tgp.getX()&&s.gridPos.getY()==tgp.getY())
+                return s;
+        return null;
+    }
+
     public GameSprite objAbovePlayer(){
         Vec2 xy = player.getGridPos();                   
         if(iGrid[(int)xy.getY()-1][(int)xy.getX()])
-            return objFromPos.get(xy);
+            return objFromPos(xy.add(new Vec2(0, -1)));
         return null;
     }
 
@@ -144,13 +147,13 @@ public abstract class PlayState{
         Vec2 xy = player.getGridPos();
         int x = (int)xy.getX(), y = (int)xy.getY();
         if(iGrid[y-1][x])
-            return objFromPos.get(new Vec2(x, y-1));
+            return objFromPos(xy.add(new Vec2(0, -1)));
         if(iGrid[y][x+1])
-            return objFromPos.get(new Vec2(x+1, y));
+            return objFromPos(xy.add(new Vec2(1, 0)));
         if(iGrid[y+1][x])
-            return objFromPos.get(new Vec2(x, y+1));
+            return objFromPos(xy.add(new Vec2(0, 1)));
         if(iGrid[y][x-1])
-            return objFromPos.get(new Vec2(x-1, y));
+            return objFromPos(xy.add(new Vec2(-1, 0)));
         return null;
     }
 }
