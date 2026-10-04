@@ -38,9 +38,10 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen
+  static int GameStatus = 6; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = howto screen, 6 = p2h, 7 = h2p
   int storyAcum;
   Set<KeyCode> inputs = new HashSet<KeyCode>();
+  static int PartyNum = 1;
 
 
 
@@ -54,6 +55,7 @@ public class MainApp extends Application {
   StartScreen startScreen;
   HowToPlayScreen howScreen;
   Intro IntroScreen;
+  TransScreen TransScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -68,6 +70,7 @@ public class MainApp extends Application {
     startScreen = new StartScreen(g, new Image("file:imgs/roadrunner_pfp.png"), new Image("file:imgs/roadrunner.png") );
     howScreen = new HowToPlayScreen(g);
     IntroScreen = new Intro(g);
+    TransScreen = new TransScreen(g);
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
@@ -91,6 +94,7 @@ public class MainApp extends Application {
         //INTRO
         else if (GameStatus == 1) {
         IntroScreen.render();
+        if (Intro.storyAcum >= 25*60) {GameStatus = 2;}
       }
 
         //PARTY GAME
@@ -128,6 +132,14 @@ public class MainApp extends Application {
 
         else if (GameStatus == 5) { 
           howScreen.render();
+        }
+
+        else if (GameStatus == 6) {
+          TransScreen.renderP2H();
+      }
+
+        else if (GameStatus == 7) { 
+          TransScreen.renderH2P();
         }
 
       
