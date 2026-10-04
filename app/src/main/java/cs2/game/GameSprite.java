@@ -16,4 +16,8 @@ public class GameSprite extends Sprite {
     public void displayWithTranslation(GraphicsContext g, Vec2 delta){
         g.drawImage(this.img, this.pos.getX() - delta.getX(), this.pos.getY() - delta.getY());
     }
+
+    public void moveAlongGrid(int x, int y){
+        this.gridPos.addThis(new Vec2(x, y)); 
+    }
 }
