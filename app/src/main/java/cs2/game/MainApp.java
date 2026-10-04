@@ -45,7 +45,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 2; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
+  static int GameStatus = 4; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -68,6 +68,7 @@ public class MainApp extends Application {
   Heist heistScreen; 
   TransScreen TransScreen;
   Party PartyScreen;
+  Outro OutroScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -84,6 +85,7 @@ public class MainApp extends Application {
     IntroScreen = new Intro(g);
     heistScreen = new Heist(g, 15, 15, 0, "Alcholol"); 
     PartyScreen = new Party(g, 15, 15);
+    OutroScreen = new Outro(g);
 
     type = 0; 
     TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);
@@ -169,7 +171,7 @@ public class MainApp extends Application {
 
       //END GAME
         else if (GameStatus == 4) {
-
+          OutroScreen.render();
       }
 
         //how-to

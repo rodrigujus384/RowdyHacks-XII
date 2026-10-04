@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 
-public class Intro implements Screen{
+public class Intro implements Screen {
 
     private GraphicsContext g;
     static int storyAcum = 0;
