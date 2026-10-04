@@ -42,6 +42,7 @@ public class MainApp extends Application {
   int storyAcum;
   int type; 
   Set<KeyCode> inputs = new HashSet<KeyCode>();
+  static int PartyNum = 1;
 
 
 
@@ -57,6 +58,7 @@ public class MainApp extends Application {
   HowToPlayScreen howScreen;
   Intro IntroScreen;
   Heist heistScreen; 
+  TransScreen TransScreen;
 
 
   @SuppressWarnings("incomplete-switch")
@@ -74,6 +76,7 @@ public class MainApp extends Application {
     heistScreen = new Heist(g, 30, 30, 0, "Alcholol"); 
 
     type = 0; 
+    TransScreen = new TransScreen(g);
 
     canvas.setOnMouseClicked(event -> {
             if (GameStatus == 0) { 
@@ -97,6 +100,7 @@ public class MainApp extends Application {
         //INTRO
         else if (GameStatus == 1) {
         IntroScreen.render();
+        if (Intro.storyAcum >= 25*60) {GameStatus = 2;}
       }
 
         //PARTY GAME
@@ -135,6 +139,14 @@ public class MainApp extends Application {
 
         else if (GameStatus == 5) { 
           howScreen.render();
+        }
+
+        else if (GameStatus == 6) {
+          TransScreen.renderP2H();
+      }
+
+        else if (GameStatus == 7) { 
+          TransScreen.renderH2P();
         }
 
       

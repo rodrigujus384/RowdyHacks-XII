@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 public class Intro implements Screen{
 
     private GraphicsContext g;
-    int storyAcum = 0;
+    static int storyAcum = 0;
 
     static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
     static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
