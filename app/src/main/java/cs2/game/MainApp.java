@@ -45,7 +45,7 @@ public class MainApp extends Application {
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
-  static int GameStatus = 0; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
+  static int GameStatus = 3; // 0 = title screen, 1 = intro, 2 = party, 3 = heist, 4 = end, 5 = how to screen, 6 p2h, 7 = h2p
   int storyAcum;
   int heistAcum;
   int type; 
@@ -75,8 +75,8 @@ public class MainApp extends Application {
   Outro OutroScreen;
 
   //Intialize Selected Store for Heist 
-  String selectedStore;
-  Integer selectedResource;  
+  String selectedStore = "Alcohol";
+  Integer selectedResource = alcohol;  
 
 
   @SuppressWarnings("incomplete-switch")
@@ -186,12 +186,13 @@ public class MainApp extends Application {
         // HEIST GAME
         else if (GameStatus == 3) {
           heistAcum++;
-          System.out.println(heistAcum);
           canvas.setFocusTraversable(true);
           canvas.requestFocus();
           canvas.setOnKeyPressed(e -> {
             inputs.add(e.getCode());
           });
+          
+          
           
           heistScreen.update(inputs);
           heistScreen.render();
