@@ -49,6 +49,7 @@ public class MainApp extends Application {
   static int musicVolume;
   static int snacks;
   static int alcohol;
+  static double moveSpeed = 3;
 
   //Intializes Screens 
   StartScreen startScreen;
