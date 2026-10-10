@@ -66,6 +66,10 @@ public class MainApp extends Application {
   static Integer alcohol = 4;
   static Integer partySupplies = 4;
   static double moveSpeed = 9; 
+  //----//
+  static Integer snacksStock = 0;
+  static Integer alcoholStock = 0;
+  static Integer partySuppliesStock = 0;
 
   //Intializes Screens 
   StartScreen startScreen;
@@ -173,6 +177,10 @@ public class MainApp extends Application {
         else if (GameStatus == 2) {  
           if (GuestLock == 0) {
             PartyScreen.invite();
+            guestHappiness+=30;
+            snacks+=5;
+            alcohol+=5;
+            
             }
           GuestLock ++;
 
