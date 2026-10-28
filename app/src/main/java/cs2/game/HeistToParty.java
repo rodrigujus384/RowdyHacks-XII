@@ -2,16 +2,11 @@ package cs2.game;
 
 import cs2.util.Vec2;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class HeistToParty implements Screen{
     private GraphicsContext g;
-    static final Image store1 = new Image("file:imgs/liqa_sto.png",250,250,true,true);
-    static final Image store2 = new Image("file:imgs/shindig_town.png", 250,250,true,true);
-    static final Image store3 = new Image("file:imgs/snacs.png",250,250,true,true);
-    static final Image traverse = new Image("file:imgs/player_run.gif", 300, 300, true, true);
     Font DaydreamTitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),50);
     Font DaydreamSubtitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),25);
     int Xstart = 450;

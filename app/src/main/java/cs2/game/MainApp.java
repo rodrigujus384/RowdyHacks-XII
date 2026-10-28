@@ -28,22 +28,11 @@ import javafx.scene.image.Image;
 public class MainApp extends Application {
 
   
-  // Images created
+  // Image tools
   static final int gridCellSize = 30;
   static final int scaleMult = 3;
   static final int scale = gridCellSize * scaleMult;
-  static final Image Default = new Image("file:imgs/ImageNotFound.png");
-  static final Image playerImg = new Image("file:imgs/roadrunner.png", scale, scale, true, true);
-  static final Image playerImgLeft = new Image("file:imgs/roadrunner2.png", scale, scale, true, true);
-  static final Image playerGif = new Image("file:imgs/player_run.gif", scale, scale, true, true);
-  static final Image playerGifLeft = new Image("file:imgs/player_run2.gif", scale, scale, true, true);
-  static final Image playerPFP = new Image("file:imgs/roadrunner_pfp.png");
-  static final Image friendPFP = new Image("file:imgs/friend_pfp.png");
-  static final Image NPCcontact = new Image("file:imgs/friend_pfp.png", 75, 75, true, true);
-  static final Image Bubble = new Image("file:imgs/speech_bubble.png", 75, 75, true, true);
-  static final Image Store1 = new Image("file:imgs/store_floor1.png", scale, scale, true, true);
-  static final Image HouseFloor = new Image("file:imgs/house_floor1.png", scale, scale, true, true);
-
+  static final Image Default = new Image("file:imgs/ImageNotFound.png"); //for party/guest logic
 
   // Variables initialized
   //Set<KeyCode> inputs = new HashSet<KeyCode>();
@@ -105,7 +94,7 @@ public class MainApp extends Application {
     OutroScreen = new Outro(g);
 
     type = 0; 
-    TransScreen = new TransScreen(g, TransScreen.store3, TransScreen.store2, TransScreen.store1);
+    TransScreen = new TransScreen(g, ImageLoader.store3, ImageLoader.store2, ImageLoader.store1);
     ToPartyScreen = new HeistToParty(g);
 
     //CLICKABLES

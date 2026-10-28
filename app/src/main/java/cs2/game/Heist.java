@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,7 +18,6 @@ public class Heist extends PlayState{
     private Integer resources; 
     private String name;
     private Shelves shelves; 
-    static final Image ShelfImg = new Image("file:imgs/store_shelf_empty_alarm_off.png", MainApp.scale, MainApp.scale, true, true);
 
 
     public Heist(GraphicsContext g, int x, int y, Integer resources, String name) {
@@ -29,13 +27,13 @@ public class Heist extends PlayState{
         this.resources = resources;
         this.name = name;
 
-        shelves = new Shelves(ShelfImg, 0.25, x, y);
+        shelves = new Shelves(ImageLoader.ShelfImg, 0.25, x, y);
         super.addObjects(shelves.getShelves());
         //TODO Auto-generated constructor stub
     }
 
     private void draw(){
-        super.display(g, MainApp.Store1);
+        super.display(g, ImageLoader.store1);
         
         //Resouce display dimentions
         double boxWidth = 150;

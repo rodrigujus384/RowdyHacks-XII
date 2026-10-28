@@ -8,17 +8,6 @@ import javafx.scene.image.Image;
 
 public class Guest extends GameSprite {
 
-  static final Image one = new Image("file:imgs/guest1.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image two = new Image("file:imgs/guest2.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image three = new Image("file:imgs/guest3.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image four = new Image("file:imgs/guest4.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image five = new Image("file:imgs/guest5.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image six = new Image("file:imgs/guest6.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image seven = new Image("file:imgs/guestCharlie.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image eight = new Image("file:imgs/guestJordan.png", MainApp.scale, MainApp.scale, true, true);
-  static final Image nine = new Image("file:imgs/guestJustin.png", MainApp.scale, MainApp.scale, true, true);
-
-
     public Guest(Image i, Vec2 p) {
       super(randomSkin(), p);
       this.interactable = true;
@@ -26,15 +15,15 @@ public class Guest extends GameSprite {
 
     public static Image randomSkin() {
       int imag = (int) (Math.random() * 21) + 1;
-      if (imag == 1 || imag == 2 || imag == 3) {return one;}
-      if (imag == 4 || imag == 5 || imag == 6) {return two;}
-      if (imag == 7 || imag == 8 || imag == 9) {return three;}
-      if (imag == 10 || imag == 11 || imag == 12) {return four;}
-      if (imag == 13 || imag == 14 || imag == 15) {return five;}
-      if (imag == 16 || imag == 17 || imag == 18) {return six;}
-      if (imag == 19) {return seven;}
-      if (imag == 20) {return eight;}
-     else {return nine;}
+      if (imag == 1 || imag == 2 || imag == 3) {return ImageLoader.one;}
+      if (imag == 4 || imag == 5 || imag == 6) {return ImageLoader.two;}
+      if (imag == 7 || imag == 8 || imag == 9) {return ImageLoader.three;}
+      if (imag == 10 || imag == 11 || imag == 12) {return ImageLoader.four;}
+      if (imag == 13 || imag == 14 || imag == 15) {return ImageLoader.five;}
+      if (imag == 16 || imag == 17 || imag == 18) {return ImageLoader.six;}
+      if (imag == 19) {return ImageLoader.seven;}
+      if (imag == 20) {return ImageLoader.eight;}
+     else {return ImageLoader.nine;}
     }
 
     public void Hunger() {

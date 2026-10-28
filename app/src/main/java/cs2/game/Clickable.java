@@ -11,12 +11,12 @@ import javafx.scene.image.Image;
 public class Clickable extends Sprite {
     private String text; 
 
-    public Clickable(Vec2 p){ super(new Image("file:imgs/button_bg.png"), p); }
+    public Clickable(Vec2 p){ super(ImageLoader.button, p); }
 
     public Clickable(Vec2 p, Image img) {super(img, p);}
 
     public Clickable(Vec2 p, String text) {
-        super(new Image("file:imgs/button_bg.png"), p);
+        super(ImageLoader.button, p);
         this.text = text; 
     }
 

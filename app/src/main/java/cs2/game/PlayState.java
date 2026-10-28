@@ -95,15 +95,15 @@ public abstract class PlayState{
         }
         if(standing){
             if(facingRight)
-                player.img = MainApp.playerImg;
+                player.img = ImageLoader.playerImg;
             else
-                player.img = MainApp.playerImgLeft;
+                player.img = ImageLoader.playerImgLeft;
         }
         else{
             if(facingRight)
-                player.img = MainApp.playerGif;
+                player.img = ImageLoader.playerGif;
             else
-                player.img = MainApp.playerGifLeft;
+                player.img = ImageLoader.playerGifLeft;
         }
         standing = true;
     }

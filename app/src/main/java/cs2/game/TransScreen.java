@@ -9,10 +9,6 @@ import javafx.scene.text.Font;
 public class TransScreen implements Screen {
 
     private GraphicsContext g;
-    static final Image store1 = new Image("file:imgs/liqa_sto.png",250,250,true,true);
-    static final Image store2 = new Image("file:imgs/shindig_town.png", 250,250,true,true);
-    static final Image store3 = new Image("file:imgs/snacs.png",250,250,true,true);
-    static final Image traverse = new Image("file:imgs/player_run.gif", 300, 300, true, true);
     Font DaydreamTitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),50);
     Font DaydreamSubtitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),25);
     int Xstart = 450;
@@ -68,15 +64,12 @@ public class TransScreen implements Screen {
         if (Xstart > 1280) {Xstart = -300;}
         g.setFill(Color.web("#000000"));
         g.fillRect(0, 0, 1280, 720);
-        //g.drawImage(store3, 65, 400);
-        //g.drawImage(store2, 490, 400);
-        //g.drawImage(store1, 915, 400);
         g.setFont(DaydreamTitle);
         g.setFill(Color.WHITE);
         g.fillText("Which store?", 335, 100);
         g.setFont(DaydreamSubtitle);
         g.fillText("Whoops! Your party sucked!", 300, 40);
-        g.drawImage(traverse, Xstart, 100);
+        g.drawImage(ImageLoader.traverse, Xstart, 100);
         snacks.display(g);
         supplies.display(g);
         alcohol.display(g);

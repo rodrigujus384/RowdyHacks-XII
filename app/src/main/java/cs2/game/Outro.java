@@ -1,7 +1,6 @@
 package cs2.game;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -10,7 +9,6 @@ public class Outro implements Screen {
     private GraphicsContext g;
     Font DaydreamTitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),50);
     Font DaydreamSubtitle = Font.loadFont(getClass().getResourceAsStream("/fonts/Daydream.otf"),25);
-    static final Image birdHat = new Image("file:imgs/player_with_hat.png", 300, 300, true, true);
 
     public Outro(GraphicsContext g){
         this.g = g;
@@ -25,7 +23,7 @@ public class Outro implements Screen {
         g.setFont(DaydreamSubtitle);
         g.fillText("You threw an epic party,", 375, 160);
         g.fillText("and everyone loved it!", 385, 210);
-        g.drawImage(birdHat, 490, 275);
+        g.drawImage(ImageLoader.birdHat, 490, 275);
     }
 
     @Override

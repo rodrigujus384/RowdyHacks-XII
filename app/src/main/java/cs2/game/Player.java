@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class Player extends Sprite {
 
   public Player() {
-    super(MainApp.playerImg, new Vec2(0,0));
+    super(ImageLoader.playerImg, new Vec2(0,0));
   }
  
   public void display(GraphicsContext g) { 

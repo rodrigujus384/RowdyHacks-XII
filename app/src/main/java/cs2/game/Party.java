@@ -39,7 +39,7 @@ public class Party extends PlayState {
     }
 
     private void draw(){
-        super.display(g, MainApp.HouseFloor);
+        super.display(g, ImageLoader.HouseFloor1);
         g.setFill(Color.BLACK);
         g.fillRect(950, 85, 120, 150);
         g.setStroke(Color.YELLOW);
